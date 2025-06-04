@@ -163,16 +163,6 @@ local servers = {
 	-- },
 }
 
-local ensure_installed = {}
-for i, _ in pairs(servers) do
-	table.insert(ensure_installed, i)
-end
-
--- Insure LSPs are installed
-require("mason-lspconfig").setup({
-	-- ensure_installed = ensure_installed,
-})
-
 local M = {}
 
 -- LspAttach Function
