@@ -27,9 +27,16 @@ require("telescope").load_extension("fzf")
 vim.keymap.set("n", "<leader>fb", builtin.buffers)
 vim.keymap.set("n", "<leader>fg", builtin.live_grep)
 vim.keymap.set("n", "<leader>h", builtin.help_tags)
+vim.keymap.set("n", "<leader>hm", function()
+    builtin.man_pages({ sections = { "ALL" } })
+end)
 
 vim.keymap.set("n", "<leader>ff", function()
     builtin.find_files({ hidden = true, layout_config = {} })
+end)
+
+vim.keymap.set("n", "<leader>fd", function()
+    builtin.git_files(themes.get_dropdown({ cwd = "~/.dotfiles/", previewer = false, show_untracked = true }))
 end)
 
 vim.keymap.set("n", "<c-p>", function()
