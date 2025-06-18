@@ -52,6 +52,7 @@ local config = {
 			-- },
 		},
 	},
+	capabilities = require("cmp_nvim_lsp").default_capabilities(),
 	root_dir = vim.fs.dirname(vim.fs.find(root_markers, { upward = true })[1]),
 	on_attach = require("guilhas07.lsp.utils").on_attach,
 }
