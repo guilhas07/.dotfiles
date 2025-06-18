@@ -1,10 +1,6 @@
 "Comments in vim dont close
 "For inline comments add a pipe(|) before double quote
 
-
-syntax on 
-"Stops error sounds
-set noerrorbells 
 "4 tab and 4 spaces and 4 >>
 set tabstop=4 softtabstop=4 shiftwidth=4 
 "Converts tab to spaces
@@ -15,12 +11,8 @@ set smartindent
 set nu relativenumber
 "No wrap
 set nowrap
-"Case sensetive searching until adding capital letter
-"set smartcase
 "No swap files and no backup
 set noswapfile nobackup
-"Because of that add a undo dir
-set undodir=~/.vim/undodir
 "Creates undo file
 set undofile
 "Get results while searching and stop highlight after founding word
@@ -45,6 +37,7 @@ set shortmess+=c
 
 set completeopt=menu,menuone,noselect
 
+set fo-=o
 "Plugins
 call plug#begin('~/.vim/plugged')
 
@@ -52,8 +45,12 @@ call plug#begin('~/.vim/plugged')
 Plug 'nvim-lua/plenary.nvim' 
 
 " ColorSchemes
-Plug 'gruvbox-community/gruvbox'
+" Plug 'gruvbox-community/gruvbox'
+Plug 'ellisonleao/gruvbox.nvim'
 Plug 'tomasr/molokai'
+
+" Provides vim.ui.input and select overrides
+Plug 'stevearc/dressing.nvim'
 
 " Provide hooks to lsp
 Plug 'jose-elias-alvarez/null-ls.nvim'
@@ -91,15 +88,9 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', {'do': 'make'}
 "Icons
 Plug 'kyazdani42/nvim-web-devicons'
 
+"Plug 'norcalli/nvim-colorizer.lua'
+
 call plug#end()
 
 let mapleader=" " 
 lua require("guilhas07")
-
-"--------------Style--------------
-colorscheme gruvbox 
-
-hi CursorLine guibg=none
-hi SignColumn guibg=none
-hi CursorLineNR guibg=none
-hi LineNr guifg=#5eacd3
