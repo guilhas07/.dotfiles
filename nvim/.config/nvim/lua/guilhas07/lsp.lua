@@ -44,50 +44,73 @@ cmp.setup({
 })
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local lsp_installer = require("nvim-lsp-installer")
+-- local lsp_installer = require("nvim-lsp-installer").setup{}
+
+require("mason").setup()
+require("mason-lspconfig").setup({
+      ensure_installed = { "sumneko_lua", "tsserver", "ccls", "jdtls" }
+})
 
 local function on_attach(client, bufnr)
   -- Set up buffer-local keymaps (vim.api.nvim_buf_set_keymap()), etc.
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer = 0})
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer = 0})
-  vim.keymap.set("n", "<leader>[d", vim.diagnostic.goto_next, {buffer = 0})
-  vim.keymap.set("n", "<leader>d]", vim.diagnostic.goto_prev, {buffer = 0})
-  vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {buffer = 0})
-  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer = 0})
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer = bufnr})
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer = bufnr})
+  vim.keymap.set("n", "<leader>[d", vim.diagnostic.goto_next, {buffer = bufnr})
+  vim.keymap.set("n", "<leader>d]", vim.diagnostic.goto_prev, {buffer = bufnr})
+  vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {buffer = bufnr})
+  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer = bufnr})
 end
 
---local enhance_server_opts = {
---  -- Provide settings that should only apply to the "eslint" server
---  ["eslint"] = function(opts)
---    opts.settings = {
---      format = {
---        enable = true,
---      },
---    }
---  end,
---}
+local lspconfig = require("lspconfig")
 
-lsp_installer.on_server_ready(function(server)
-  -- Specify the default options which we'll use to setup all servers
-    local opts = {
-        capabilities = capabilities,
-        on_attach = on_attach,
+lspconfig.sumneko_lua.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' }
+            },
+        },
     }
+}
+lspconfig.tsserver.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
 
-    if server.name == 'sumneko_lua' then
-        opts.settings = {
-            Lua = {
-                diagnostics = {globals = {'vim'}}
-            }
-        }
-    end
+lspconfig.ccls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+
+lspconfig.jdtls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+
+-- lsp_installer.on_server_ready(function(server)
+ -- -- Specify the default options which we'll use to setup all servers
+ --   local opts = {
+ --       capabilities = capabilities,
+ --       on_attach = on_attach,
+ --   }
+
+ --   if server.name == 'sumneko_lua' then
+ --       opts.settings = {
+ --           Lua = {
+ --               diagnostics = {globals = {'vim'}}
+ --           }
+ --       }
+ --   end
   --if enhance_server_opts[server.name] then
   --  -- Enhance the default opts with the server-specific ones
   --  enhance_server_opts[server.name](opts)
   --end
 
-  server:setup(opts)
-end)
+--  server:setup(opts)
+--end)
+
 
 -- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
 -- or if the server is already installed).

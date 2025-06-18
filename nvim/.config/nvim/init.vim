@@ -54,7 +54,10 @@ Plug 'tomasr/molokai'
 
 " Lsp
 Plug 'neovim/nvim-lspconfig'
-Plug 'williamboman/nvim-lsp-installer'
+" Plug 'williamboman/nvim-lsp-installer'
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+
 Plug 'onsails/lspkind-nvim'
 
 " Snips
@@ -85,11 +88,11 @@ let mapleader=" "
 lua require("guilhas07")
 
 "--------------Style--------------
-set colorcolumn=80
+"set colorcolumn=80
 
 colorscheme gruvbox "darkblue molokai 
 
-hi CursorLine guibg=none 
+hi CursorLine guibg=none
 hi SignColumn guibg=none
 hi CursorLineNR guibg=none
 hi LineNr guifg=#5eacd3
