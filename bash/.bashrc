@@ -39,6 +39,8 @@ update-cargo () {
 }
 
 alias vim="nvim"
+alias dot="cd ~/.dotfiles/"
+alias mkdir="mkdir -p"
 lg()
 {
     export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
@@ -50,8 +52,6 @@ lg()
             rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
     fi
 }
-alias dot="cd ~/.dotfiles/"
-alias tese="cd ~/Documents/BestGC-Software/"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
