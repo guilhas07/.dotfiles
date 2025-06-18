@@ -172,6 +172,7 @@ function M.on_attach(client, bufnr)
 
 	-- toggle inlay_hints
 	if client.server_capabilities.inlayHintProvider then
+		vim.lsp.inlay_hint.enable(bufnr, not vim.lsp.inlay_hint.is_enabled(bufnr))
 		vim.keymap.set("n", "<leader>th", function()
 			vim.lsp.inlay_hint.enable(bufnr, not vim.lsp.inlay_hint.is_enabled(bufnr))
 		end)
