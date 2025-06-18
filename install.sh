@@ -54,7 +54,12 @@ esac
 
 echo 
 
-# Installing all required programs
+echo "Installing all required programs"
+git clone "https://aur.archlinux.org/yay.git"
+cd yay
+makepkg -si
+cd -
+rm -rf yay
 sudo $package_manager -Syu $programs --needed
 
 # clear bash default settings to prevent stow conflict
