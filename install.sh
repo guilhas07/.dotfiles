@@ -55,15 +55,23 @@ esac
 echo 
 
 echo "Installing all required programs"
-git clone "https://aur.archlinux.org/yay.git"
-cd yay
-makepkg -si
-cd -
-rm -rf yay
+
+# install yay if it doesn't exist
+if ! command -v yay &> /dev/null;then
+    git clone "https://aur.archlinux.org/yay.git"
+    cd yay
+    makepkg -si
+    cd -
+    rm -rf yay
+fi
+
 sudo $package_manager -Syu $programs --needed
 
 # clear bash default settings to prevent stow conflict
-rm ~/.bash*
+read -p "Do you which to remove your local bash scripts? [y/n] " code
+if [[ "$code" == "y" ]];then
+    rm ~/.bash*
+fi
 
 # restore config directories
 dirs=$(find . -maxdepth 1 -type d ! -path "*.git" ! -path "." -exec echo {} \; |  tr -d "./")
@@ -71,6 +79,9 @@ for dir in $dirs; do
 	echo "Stowing $dir"
 	stow $dir
 done
+
+# update fonts
+fc-cache -fv ~/.local/share/fonts/
 
 # source new .bashrc
 source ~/.bashrc
