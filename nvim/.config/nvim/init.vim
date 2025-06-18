@@ -55,12 +55,16 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'tomasr/molokai'
 
+" Provide hooks to lsp
+Plug 'jose-elias-alvarez/null-ls.nvim'
+
 " Lsp
 Plug 'neovim/nvim-lspconfig'
+
+" Provide installation for Lsp, DAP, Lint, Formatter
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 
-Plug 'onsails/lspkind-nvim'
 
 " Snips
 Plug 'L3MON4D3/LuaSnip'
@@ -73,6 +77,9 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-nvim-lsp'
+
+"vscode-like pictograms to neovim built-in lsp
+Plug 'onsails/lspkind-nvim'
 
 "Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
