@@ -61,6 +61,12 @@ vim.opt.virtualedit = "all"
 vim.opt.startofline = false
 
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+
+vim.opt.guicursor = {
+	"n-v-c-sm:block-Cursor/lCursor",
+	"i-ci-ve:ver25-Cursor/lCursor",
+	"r-cr-o:hor20-Cursor/lCursor",
+}
 -- vim.g.clipboard = {
 --     name = 'Kitty',
 --     copy = {
