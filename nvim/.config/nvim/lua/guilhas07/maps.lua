@@ -1,6 +1,16 @@
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
 
+vim.ui.open = (function(overridden)
+	return function(path, opt)
+        -- Use explorer.exe in wsl
+        if vim.fn.executable("explorer.exe") == 1 then
+            opt = {cmd = { 'explorer.exe'}}
+        end
+		return overridden(path, opt)
+	end
+end)(vim.ui.open)
+
 keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, opts)
 keymap.set("n", "<leader>pv", vim.cmd.Oil, opts)
 keymap.set("n", "<leader>ng", vim.cmd.Neogen, opts)
@@ -10,7 +20,7 @@ keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 keymap.set("", "<leader>f", function()
 	require("conform").format({ async = true }, function(err)
-		print("formatting")
+		vim.notify("Formatting...")
 		if not err then
 			local mode = vim.api.nvim_get_mode().mode
 			if vim.startswith(string.lower(mode), "v") then
