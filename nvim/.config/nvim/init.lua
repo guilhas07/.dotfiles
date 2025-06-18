@@ -121,6 +121,9 @@ require("lazy").setup({
         --Treesitter
         -- dir = "~/nvim-treesitter/",
         "nvim-treesitter/nvim-treesitter",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter-context",
+        },
         build = ":TSUpdate",
         config = function()
             require("guilhas07.treesitter")
