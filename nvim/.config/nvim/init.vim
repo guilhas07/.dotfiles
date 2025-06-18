@@ -40,6 +40,11 @@ set updatetime=50
 
 set cursorline
 
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+set completeopt=menu,menuone,noselect
+
 "Plugins
 call plug#begin('~/.vim/plugged')
 
@@ -51,15 +56,13 @@ Plug 'williamboman/nvim-lsp-installer'
 
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'onsails/lspkind-nvim'
 
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-nvim-lsp'
-
-
-
 
 call plug#end()
 

@@ -1,3 +1,5 @@
+alias vim="nvim"
+
 # Use powerline
 USE_POWERLINE="true"
 # Source manjaro-zsh-configuration
@@ -14,6 +16,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 unsetopt nomatch
+
 
 alias es="cd ~/Documents/ES/es22-32/"
 
