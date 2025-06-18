@@ -48,13 +48,15 @@ set completeopt=menu,menuone,noselect
 "Plugins
 call plug#begin('~/.vim/plugged')
 
+" Dependency for multiple plugins 
+Plug 'nvim-lua/plenary.nvim' 
+
 " ColorSchemes
 Plug 'gruvbox-community/gruvbox'
 Plug 'tomasr/molokai'
 
 " Lsp
 Plug 'neovim/nvim-lspconfig'
-" Plug 'williamboman/nvim-lsp-installer'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 
@@ -63,6 +65,7 @@ Plug 'onsails/lspkind-nvim'
 " Snips
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'rafamadriz/friendly-snippets'
 
 " Cmp
 Plug 'hrsh7th/nvim-cmp'
@@ -75,7 +78,6 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Telescope
-Plug 'nvim-lua/plenary.nvim' " Dependency for telescope
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', {'do': 'make'}
 
@@ -88,17 +90,9 @@ let mapleader=" "
 lua require("guilhas07")
 
 "--------------Style--------------
-"set colorcolumn=80
-
-colorscheme gruvbox "darkblue molokai 
+colorscheme gruvbox 
 
 hi CursorLine guibg=none
 hi SignColumn guibg=none
 hi CursorLineNR guibg=none
 hi LineNr guifg=#5eacd3
-
-"Placed under colorscheme to keep background none
-"highlight Normal ctermbg=NONE 
-"highlight ColorColumn ctermbg=black 
-"highlight Normal guibg=NONE 
-
