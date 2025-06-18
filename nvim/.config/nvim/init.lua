@@ -1,6 +1,11 @@
 vim.g.mapleader = " "
 _G.IS_WSL = vim.loop.os_uname().release:find("WSL") and true or false
 
+local browser
+if _G.IS_WSL then
+    browser = "explorer.exe"
+end
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -272,10 +277,11 @@ require("lazy").setup({
 	},
 	-- 'norcalli/nvim-colorizer,
 	"mbbill/undotree",
-}, { ui = { border = "rounded" }, checker = { enabled = true } })
+}, { ui = { border = "rounded", browser = browser }, checker = { enabled = true } })
 
 require("guilhas07.set")
-require("guilhas07.remaps")
+require("guilhas07.overrides")
+require("guilhas07.maps")
 require("guilhas07.autocmd")
 require("guilhas07.ft")
 require("guilhas07.color")
