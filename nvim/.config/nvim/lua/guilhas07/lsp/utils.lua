@@ -1,12 +1,19 @@
--- Ui Settings
 local border = "rounded"
 
-vim.diagnostic.config({
-    float = { border = border },
-})
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
 
--- lspconfig window
+vim.diagnostic.config({
+    virtual_text = { prefix = "●" },
+    float = { --[[ source = "always", ]]
+        border = border,
+    },
+})
 require("lspconfig.ui.windows").default_options.border = border
+require("mason").setup({ ui = { border = border } })
 
 -- Configure handlers
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
@@ -24,9 +31,6 @@ vim.lsp.handlers["textDocument/definition"] = function(_, result, ctx)
         vim.lsp.util.jump_to_location(result, client.offset_encoding)
     end
 end
-
--- Setup Mason
-require("mason").setup({ ui = { border = border } })
 
 local servers = {
     sumneko_lua = {
