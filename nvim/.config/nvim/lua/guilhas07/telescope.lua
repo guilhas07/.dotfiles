@@ -81,7 +81,7 @@ vim.keymap.set("n", "<c-p>", function()
 	builtin.git_files({ show_untracked = true })
 end)
 
-local key = _G.IS_WSL and "<c-_>" or "<c-/"
+local key = (_G.IS_WSL or vim.fn.exists("$TMUX")) and "<c-_>" or "<c-/>"
 vim.keymap.set("n", key, function()
 	builtin.current_buffer_fuzzy_find({
 		sorting_strategy = "ascending",
