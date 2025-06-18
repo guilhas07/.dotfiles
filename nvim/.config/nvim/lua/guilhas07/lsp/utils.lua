@@ -64,7 +64,8 @@ local servers = {
 		},
 	},
 	-- eslint = {},
-	-- tsserver = {},
+	lemminx = {},
+	tsserver = {},
 	clangd = {},
 	gopls = {
 		settings = {
@@ -76,6 +77,7 @@ local servers = {
 					rangeVariableTypes = true,
 				},
 				["ui.diagnostic.staticcheck"] = true,
+				gofumpt = true,
 			},
 		},
 	},
@@ -169,7 +171,6 @@ end
 local M = {}
 
 -- LspAttach Function
-local buf_inlay_hints = {} -- keep track of inlay hints per buffer
 function M.on_attach(client, bufnr)
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
