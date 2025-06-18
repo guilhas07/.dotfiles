@@ -67,18 +67,16 @@ vim.keymap.set("n", "<leader>m", function()
 end)
 
 vim.keymap.set("n", "<leader>ff", function()
-	builtin.find_files({ hidden = true, layout_config = {} })
+	builtin.find_files({ hidden = true })
 end)
 
 vim.keymap.set("n", "<leader>fd", function()
-	builtin.git_files(themes.get_dropdown({ cwd = "~/.dotfiles/", previewer = false, show_untracked = true }))
+	builtin.find_files({ cwd = "~/.dotfiles/", hidden = true })
 end)
 
-vim.keymap.set("n", "<c-p>", function()
-	builtin.git_files(themes.get_dropdown({ previewer = false, show_untracked = true }))
-end)
+vim.keymap.set("n", "<c-p>", builtin.git_files)
 
-local key = vim.fn.has("wsl") and "<c-_>" or "<c-/"
+local key = _G.IS_WSL and "<c-_>" or "<c-/"
 vim.keymap.set("n", key, function()
 	builtin.current_buffer_fuzzy_find({
 		sorting_strategy = "ascending",

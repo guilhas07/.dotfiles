@@ -1,4 +1,5 @@
 vim.g.mapleader = " "
+_G.IS_WSL = vim.loop.os_uname().release:find("WSL") and true or false
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then

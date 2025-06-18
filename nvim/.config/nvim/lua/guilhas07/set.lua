@@ -35,7 +35,7 @@ vim.o.completeopt = "menu,menuone,noselect"
 
 vim.o.clipboard = "unnamedplus"
 
-if vim.fn.has("wsl") then
+if _G.IS_WSL then
 	vim.g.clipboard = {
 		name = "WslClipboard",
 		copy = {
