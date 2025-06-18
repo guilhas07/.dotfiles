@@ -65,7 +65,7 @@ local servers = {
 	},
 	-- eslint = {},
 	lemminx = {},
-	tsserver = {},
+	ts_ls = {},
 	clangd = {},
 	gopls = {
 		settings = {
