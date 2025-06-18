@@ -55,10 +55,10 @@ local servers = {
     -- jdtls = {
     --
     --    },
-    pylsp = {},
-    html = {},
-    cssls = {},
-    perlnavigator = {},
+    -- pylsp = {},
+    -- html = {},
+    -- cssls = {},
+    -- perlnavigator = {},
     bashls = {},
     omnisharp = {
         handlers = {

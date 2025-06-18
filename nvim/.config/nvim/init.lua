@@ -13,11 +13,38 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+require("guilhas07.set")
+
 require("lazy").setup({
+    {
+        "rcarriga/nvim-notify",
+        config = function()
+            local opts = {
+                stages = "static",
+                render = "minimal",
+            }
+            require("notify").setup(opts)
+            vim.notify = require("notify")
+        end,
+    },
     -- Comments
     { "numToStr/Comment.nvim", config = true },
-
-    -- AutoPairs
+    {
+        "m4xshen/hardtime.nvim",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "nvim-lua/plenary.nvim",
+            "rcarriga/nvim-notify",
+        },
+        opts = {
+            allow_different_key = true,
+            max_time = 3000,
+            restricted_keys = {
+                ["<C-P>"] = {},
+            },
+        },
+    },
+    --AutoPairs
     { "windwp/nvim-autopairs", config = true },
     {
         -- Add indentation guides even on blank lines
@@ -128,5 +155,4 @@ require("lazy").setup({
     "mbbill/undotree",
 }, { ui = { border = "rounded" } })
 
-require("guilhas07.set")
 require("guilhas07.remaps")
