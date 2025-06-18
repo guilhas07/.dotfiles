@@ -16,24 +16,25 @@ eval "$(starship init bash)"
 export EDITOR="nvim"
 
 update-go () {
-    echo "Updating go installed packages using gup tool"
     if ! command -v gup 2>&1 >/dev/null
     then
         echo "gup tool could not be found"
+	echo "install gup with: go install github.com/nao1215/gup@latest"
         return 1
     fi
-
+    echo "Updating go installed packages using gup tool"
     gup update
 }
 
 update-cargo () {
-    echo "Updating cargo installed packages using cargo-update crate"
     if ! command -v cargo-install-update 2>&1 >/dev/null
     then
         echo "cargo-update crate could not be found"
+        echo "install cargo-update with: cargo install cargo-update"
         return 1
     fi
 
+    echo "Updating cargo installed packages using cargo-update crate"
     cargo install-update -a
 }
 
@@ -50,3 +51,9 @@ lg()
     fi
 }
 alias dot="cd ~/.dotfiles/"
+alias tese="cd ~/Documents/BestGC-Software/"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+HISTTIMEFORMAT="%d/%m/%y %T "
