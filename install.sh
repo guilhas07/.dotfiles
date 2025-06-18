@@ -41,7 +41,7 @@ install_neovim(){
 
 os_version=$(hostnamectl | sed -n 's/Operating System: \(.*$\)/\1/p') # -n in conjuction with p flag, only prints matched line
 package_manager=""
-programs="stow kitty starship lazygit npm unzip p7zip git-delta noto-fonts-emoji"
+programs="stow kitty starship lazygit npm unzip p7zip git-delta noto-fonts-emoji tmux"
 
 case $os_version in
 	"Arch Linux")
