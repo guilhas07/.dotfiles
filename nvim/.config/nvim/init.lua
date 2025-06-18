@@ -15,10 +15,16 @@ vim.opt.rtp:prepend(lazypath)
 
 require("guilhas07.set")
 require("guilhas07.remaps")
+require("guilhas07.autocmd")
 
 require("lazy").setup({
 
 	{ dir = "~/test.nvim/", config = true },
+	-- {
+	-- 	"folke/todo-comments.nvim",
+	-- 	dependencies = { "nvim-lua/plenary.nvim" },
+	-- 	config = true,
+	-- },
 	{
 		"stevearc/oil.nvim",
 		-- Optional dependencies
@@ -151,6 +157,13 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"danymat/neogen",
+		dependencies = "L3MON4D3/LuaSnip",
+		config = function()
+			require("neogen").setup({ snippet_engine = "luasnip" })
+		end,
+	},
+	{
 		-- Snips
 		"L3MON4D3/LuaSnip",
 		dependencies = "rafamadriz/friendly-snippets",
@@ -167,8 +180,10 @@ require("lazy").setup({
 			{
 				"nvim-treesitter/nvim-treesitter-context",
 				opts = {
-					-- max_lines = 5,
+					-- max_lines = function() return "5%" end,
+					max_lines = 5,
 					separator = "-",
+					mode = "topline",
 				},
 			},
 		},
@@ -192,8 +207,14 @@ require("lazy").setup({
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 
 	-- Provides vim.ui.input and select overrides
-	"stevearc/dressing.nvim",
-
+	{
+		"stevearc/dressing.nvim",
+		opts = {
+			input = {
+				insert_only = false,
+			},
+		},
+	},
 	--Icons
 	"kyazdani42/nvim-web-devicons",
 
