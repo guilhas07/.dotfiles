@@ -8,7 +8,7 @@ keymap.set("n", "<leader>z", vim.cmd.Zen, opts)
 
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-keymap.set("", "<leader>f", function()
+keymap.set("n", "<leader>f", function()
 	require("conform").format({ async = true }, function(err)
 		vim.notify("Formatting...")
 		if not err then

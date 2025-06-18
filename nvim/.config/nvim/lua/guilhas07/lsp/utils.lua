@@ -174,18 +174,6 @@ require("mason-lspconfig").setup({
 	-- ensure_installed = ensure_installed,
 })
 
--- Setup autoformmating
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-local lsp_formatting = function(bufnr)
-	vim.lsp.buf.format({
-		filter = function(client)
-			return client.name ~= "tsserver"
-		end,
-		bufnr = bufnr,
-		timeout_ms = 5000,
-	})
-end
-
 local M = {}
 
 -- LspAttach Function
@@ -198,7 +186,6 @@ function M.on_attach(client, bufnr)
 	vim.keymap.set("n", "<leader>sh", vim.lsp.buf.signature_help, bufopts)
 	vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, bufopts)
 	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
-	vim.keymap.set("n", "<leader>f", lsp_formatting, bufopts)
 
 	-- toggle inlay_hints
 	if client.server_capabilities.inlayHintProvider then
