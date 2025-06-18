@@ -75,7 +75,31 @@ local servers = {
     -- jdtls = {
     --
     --    },
-    -- pylsp = {},
+    -- pylsp = {
+    --     settings = {
+    --         pylsp = {
+    --             plugins = {
+    --                 black = { enabled = true },
+    --
+    --             }
+    --         }
+    --     }
+    -- },
+    pyright = {
+        settings = {
+            pyright = {
+                -- Using Ruff's import organizer
+                disableOrganizeImports = true,
+            },
+            python = {
+                analysis = {
+                    -- Ignore all files for analysis to exclusively use Ruff for linting
+                    ignore = { '*' },
+                },
+            },
+        },
+    },
+    ruff_lsp = {},
     -- html = {},
     -- cssls = {},
     -- perlnavigator = {},
