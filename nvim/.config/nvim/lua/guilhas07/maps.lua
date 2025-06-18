@@ -30,6 +30,11 @@ keymap.set("n", "<leader>cd", function()
 		end
 	end
 
+    if not qf then
+        vim.notify("No quickfix list is currently open", vim.log.levels.WARN)
+        return
+    end
+
 	vim.ui.input({ prompt = "Enter command for cdo: ", relative = "editor" }, function(input)
 		if not input or input == "" then
 			return
