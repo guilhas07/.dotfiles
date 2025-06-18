@@ -52,7 +52,7 @@ require("lazy").setup({
         opts = {
             disable_mouse = false,
             allow_different_key = true,
-            max_time = 3000,
+            max_time = 500,
             restricted_keys = {
                 ["<C-P>"] = {},
             },
@@ -105,6 +105,18 @@ require("lazy").setup({
             -- { "j-hui/fidget.nvim", opts = { window = { blend = 0 } } },
             { "folke/neodev.nvim", config = true },
             "mfussenegger/nvim-jdtls",
+            {
+                "mrcjkb/rustaceanvim",
+                version = "^3", -- Recommended
+                ft = { "rust" },
+                config = function()
+                    vim.g.rustaceanvim = {
+                        server = {
+                            on_attach = require("guilhas07.lsp.utils").on_attach
+                        },
+                    }
+                end,
+            }
         },
         config = function()
             require("guilhas07.lsp")
