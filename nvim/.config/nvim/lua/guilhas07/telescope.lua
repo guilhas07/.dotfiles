@@ -21,6 +21,10 @@ telescope.setup({
     },
 })
 
+function find_files()
+	builtin.find_files({ hidden = true, no_ignore = true })
+end
+
 local private_plugin = {}
 local id = 1
 for _, plugin in ipairs(require("lazy").plugins()) do
@@ -67,9 +71,7 @@ vim.keymap.set("n", "<leader>m", function()
 	builtin.man_pages({ sections = { "ALL" } })
 end)
 
-vim.keymap.set("n", "<leader>ff", function()
-	builtin.find_files({ hidden = true })
-end)
+vim.keymap.set("n", "<leader>ff", find_files)
 
 vim.keymap.set("n", "<leader>fd", function()
 	builtin.find_files({ cwd = "~/.dotfiles/", hidden = true })
@@ -78,9 +80,10 @@ end)
 vim.keymap.set("n", "<c-p>", function()
 	local ok = pcall(builtin.git_files, { show_untracked = true })
 	if not ok then
-		builtin.find_files({ hidden = true })
+		find_files()
 	end
 end)
+
 
 local key = (_G.IS_WSL or vim.fn.exists("$TMUX") ~= 0) and "<c-_>" or "<c-/>"
 
