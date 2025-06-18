@@ -18,7 +18,8 @@ require("guilhas07.remaps")
 
 require("lazy").setup({
 
-    { "folke/zen-mode.nvim",   config = true },
+    { dir = "~/Documents/test.nvim/", config = true },
+    { "folke/zen-mode.nvim",          config = true },
     {
         "rcarriga/nvim-notify",
         init = function()
@@ -48,7 +49,7 @@ require("lazy").setup({
         },
     },
     --AutoPairs
-    { "windwp/nvim-autopairs",                    config = true },
+    { "windwp/nvim-autopairs", config = true },
     {
         -- Add indentation guides even on blank lines
         "lukas-reineke/indent-blankline.nvim",
@@ -60,6 +61,7 @@ require("lazy").setup({
         --     show_trailing_blankline_indent = false,
         -- },
         main = "ibl",
+        event = "VeryLazy"
     },
     {
         -- Adds git releated signs to the gutter, as well as utilities for managing changes
@@ -150,14 +152,14 @@ require("lazy").setup({
     "kyazdani42/nvim-web-devicons",
 
     -- Status Line
-    { "nvim-lualine/lualine.nvim", config = true },
+    { "nvim-lualine/lualine.nvim",                config = true },
 
     -- ColorSchemes
     "ellisonleao/gruvbox.nvim",
     "tomasr/molokai",
     "olimorris/onedarkpro.nvim",
-    { "rose-pine/neovim",          name = "rose-pine" },
-    { "catppuccin/nvim",           name = "catppuccin" },
+    { "rose-pine/neovim", name = "rose-pine" },
+    { "catppuccin/nvim",  name = "catppuccin" },
     "folke/tokyonight.nvim",
     "rebelot/kanagawa.nvim",
     -- 'norcalli/nvim-colorizer,
