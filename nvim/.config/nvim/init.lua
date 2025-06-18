@@ -14,20 +14,20 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("guilhas07.set")
+require("guilhas07.remaps")
 
 require("lazy").setup({
 
     { "folke/zen-mode.nvim",   config = true },
     {
         "rcarriga/nvim-notify",
-        config = function()
-            local opts = {
-                stages = "static",
-                render = "minimal",
-            }
-            require("notify").setup(opts)
+        init = function()
             vim.notify = require("notify")
         end,
+        opts = {
+            stages = "static",
+            render = "minimal",
+        },
     },
     -- Comments
     { "numToStr/Comment.nvim", config = true },
@@ -59,7 +59,7 @@ require("lazy").setup({
         },
         --     show_trailing_blankline_indent = false,
         -- },
-        main = "ibl"
+        main = "ibl",
     },
     {
         -- Adds git releated signs to the gutter, as well as utilities for managing changes
@@ -159,6 +159,4 @@ require("lazy").setup({
     "rebelot/kanagawa.nvim",
     -- 'norcalli/nvim-colorizer,
     "mbbill/undotree",
-}, { ui = { border = "rounded" } })
-
-require("guilhas07.remaps")
+}, { ui = { border = "rounded" }, checker = { enabled = true } })
