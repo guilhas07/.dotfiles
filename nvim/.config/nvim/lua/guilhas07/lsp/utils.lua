@@ -47,6 +47,8 @@ local servers = {
 				},
 				hint = {
 					enable = true,
+					setType = true,
+					arrayIndex = "Disable",
 				},
 				runtime = {
 					version = "LuaJIT",
