@@ -61,6 +61,17 @@ local servers = {
     -- eslint = {},
     -- tsserver = {},
     clangd = {},
+    gopls = {
+        settings = {
+            gopls = {
+                ["ui.inlayhint.hints"] = {
+                    compositeLiteralFields = true,
+                    constantValues = true,
+                    parameterNames = true,
+                },
+            },
+        },
+    },
     -- jdtls = {
     --
     --    },
