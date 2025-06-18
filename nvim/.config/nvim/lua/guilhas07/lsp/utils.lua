@@ -60,6 +60,11 @@ local servers = {
     cssls = {},
     perlnavigator = {},
     bashls = {},
+    omnisharp = {
+        handlers = {
+            ["textDocument/definition"] = require('omnisharp_extended').handler,
+        }
+    },
 }
 
 local ensure_installed = {}
@@ -80,6 +85,7 @@ local lsp_formatting = function(bufnr)
             return client.name ~= "tsserver"
         end,
         bufnr = bufnr,
+        timeout_ms = 5000,
     })
 end
 
@@ -106,7 +112,7 @@ function M.on_attach(client, bufnr)
             group = augroup,
             buffer = bufnr,
             callback = function()
-                lsp_formatting(bufnr)
+                --lsp_formatting(bufnr)
             end,
         })
     end

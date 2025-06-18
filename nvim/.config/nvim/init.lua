@@ -48,7 +48,7 @@ require("lazy").setup({
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             "jose-elias-alvarez/null-ls.nvim", -- Provide hooks to lsp
-            { "j-hui/fidget.nvim", opts = { window = { blend = 0 } } },
+            -- { "j-hui/fidget.nvim", opts = { window = { blend = 0 } } },
             { "folke/neodev.nvim", config = true },
             "mfussenegger/nvim-jdtls",
         },
@@ -56,7 +56,7 @@ require("lazy").setup({
             require("guilhas07.lsp")
         end,
     },
-
+    "Hoffs/omnisharp-extended-lsp.nvim",
     {
         -- CMP
         "hrsh7th/nvim-cmp",
@@ -85,8 +85,10 @@ require("lazy").setup({
 
     {
         --Treesitter
+        -- dir = "~/nvim-treesitter/",
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
+        dependencies = "nvim-treesitter/playground",
         config = function()
             require("guilhas07.treesitter")
         end,
@@ -121,8 +123,8 @@ require("lazy").setup({
     { "rose-pine/neovim", name = "rose-pine" },
     { "catppuccin/nvim",  name = "catppuccin" },
     "folke/tokyonight.nvim",
-
-    -- 'norcalli/nvim-colorizer.lua',
+    "rebelot/kanagawa.nvim",
+    -- 'norcalli/nvim-colorizer,
     "mbbill/undotree",
 }, { ui = { border = "rounded" } })
 
