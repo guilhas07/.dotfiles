@@ -11,9 +11,8 @@ function M.setup(on_attach)
         sources = {
             b.formatting.stylua,
             b.formatting.prettier,
-            b.formatting.fixjson,
+            --b.formatting.fixjson,
             --b.diagnostics.selene.with(),
-            --b.diagnostics.eslint,
         },
         border = border,
     })

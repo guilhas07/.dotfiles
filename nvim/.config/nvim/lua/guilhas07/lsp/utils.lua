@@ -45,12 +45,14 @@ local servers = {
             },
         },
     },
+    eslint = {},
     tsserver = {},
     clangd = {},
     jdtls = {},
     pylsp = {},
     html = {},
     cssls = {},
+    perlnavigator = {},
 }
 
 local ensure_installed = {}
