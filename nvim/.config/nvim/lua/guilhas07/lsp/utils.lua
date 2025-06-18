@@ -96,8 +96,7 @@ local servers = {
 					return path ~= nil and (vim.fs.dirname(path) .. "/") or nil
 				end)(),
 				analysis = {
-					-- Ignore all files for analysis to exclusively use Ruff for linting
-					-- ignore = { '*' },
+					ignore = { ".venv" },
 				},
 			},
 		},
