@@ -52,8 +52,10 @@ end
 
 vim.opt_local.shortmess:append("c")
 
-vim.opt.foldmethod = "indent"
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldenable = false
+-- vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
 
 vim.opt.virtualedit = "all"
 vim.opt.startofline = false
