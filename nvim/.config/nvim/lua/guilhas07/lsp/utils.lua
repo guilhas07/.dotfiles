@@ -101,6 +101,7 @@ local servers = {
 	-- jdtls = {
 	--
 	--    },
+	eslint = {},
 	pyright = {
 		settings = {
 			pyright = {

@@ -3,7 +3,7 @@ _G.IS_WSL = vim.loop.os_uname().release:find("WSL") and true or false
 
 local browser
 if _G.IS_WSL then
-    browser = "explorer.exe"
+	browser = "explorer.exe"
 end
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -121,12 +121,6 @@ require("lazy").setup({
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			-- "nvimtools/none-ls.nvim", -- Provide hooks to lsp
-			{
-				"stevearc/conform.nvim",
-				config = function()
-					require("guilhas07.formatter")
-				end,
-			},
 			{ "j-hui/fidget.nvim", config = true }, -- opts = { window = { blend = 0 } } },
 			"mfussenegger/nvim-jdtls",
 			"Hoffs/omnisharp-extended-lsp.nvim",
@@ -147,6 +141,21 @@ require("lazy").setup({
 			require("guilhas07.lsp")
 		end,
 	},
+	-- Formatting and linting
+	{
+		"stevearc/conform.nvim",
+		config = function()
+			require("guilhas07.formatter")
+		end,
+	},
+	-- {
+	-- 	"mfussenegger/nvim-lint",
+	-- 	config = function()
+	-- 		require("guilhas07.lint")
+	-- 	end,
+	-- },
+
+	-- Debugging
 	{
 		"mfussenegger/nvim-dap",
 		-- NOTE: And you can specify dependencies as well
@@ -252,6 +261,8 @@ require("lazy").setup({
 
 	-- Status Line
 	{ "nvim-lualine/lualine.nvim", config = true },
+	-- StatusColumn
+	{ "luukvbaal/statuscol.nvim", config = true },
 
 	-- ColorSchemes
 	"ellisonleao/gruvbox.nvim",
