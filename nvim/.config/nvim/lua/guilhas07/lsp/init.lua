@@ -14,7 +14,8 @@ local setup_server = function(server, config)
 		on_attach = on_attach,
 		capabilities = capabilities,
 	}, config)
-	lspconfig[server].setup(config)
+    vim.lsp.enable(server)
+    vim.lsp.config(server, config)
 end
 
 for server, config in pairs(servers) do
