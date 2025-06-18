@@ -11,6 +11,6 @@ end)(vim.ui.open)
 vim.diagnostic.jump = (function(overridden)
 	---@param opts vim.diagnostic.JumpOpts
 	return function(opts)
-        overridden(vim.tbl_extend("error", opts, { _highest = true }))
+        overridden(vim.tbl_extend("error", opts, { _highest = true, float = true }))
 	end
 end)(vim.diagnostic.jump)
