@@ -39,7 +39,7 @@ install_neovim(){
     bob use nightly
 }
 
-os_version=$(hostnamectl | sed -n 's/Operating System: \(.*$\)/\1/p') # -n in conjuction with p flag, only pritnts matched line
+os_version=$(hostnamectl | sed -n 's/Operating System: \(.*$\)/\1/p') # -n in conjuction with p flag, only prints matched line
 package_manager=""
 programs="stow kitty starship lazygit npm unzip p7zip git-delta"
 
@@ -74,7 +74,7 @@ if [[ "$code" == "y" ]];then
 fi
 
 # restore config directories
-dirs=$(find . -maxdepth 1 -type d ! -path "*.git" ! -path "." -exec echo {} \; |  tr -d "./")
+dirs=$(find . -maxdepth 1 -type d ! -path ".git" ! -path "." | tr -d "./")
 for dir in $dirs; do
 	echo "Stowing $dir"
 	stow $dir
