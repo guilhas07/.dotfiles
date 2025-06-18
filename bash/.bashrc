@@ -12,7 +12,6 @@ PS1='[\u@\h \W]\$ '
 eval "$(starship init bash)"
 . "$HOME/.cargo/env"
 
-export PATH="$PATH:~/.local/share/bob/nvim-bin"
 export EDITOR="nvim"
 
 alias vim="nvim"

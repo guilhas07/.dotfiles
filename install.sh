@@ -37,6 +37,7 @@ install_neovim(){
 	bob install stable
 	echo "Using neovim nightly"
     bob use nightly
+    sudo ln -s ~/.local/share/bob/nvim-bin/nvim /usr/bin/nvim
 }
 
 os_version=$(hostnamectl | sed -n 's/Operating System: \(.*$\)/\1/p') # -n in conjuction with p flag, only prints matched line
