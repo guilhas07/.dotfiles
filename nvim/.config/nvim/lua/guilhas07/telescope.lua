@@ -24,6 +24,8 @@ require("telescope").setup({
 require("telescope").load_extension("fzf")
 
 -- KeyMaps --
+vim.keymap.set("n", "gr", builtin.lsp_references)
+
 vim.keymap.set("n", "<leader>fb", builtin.buffers)
 vim.keymap.set("n", "<leader>fg", builtin.live_grep)
 vim.keymap.set("n", "<leader>h", builtin.help_tags)
