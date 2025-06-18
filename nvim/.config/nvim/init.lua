@@ -16,7 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 
-	{ dir = "~/test.nvim/", config = true },
+	-- { dir = "~/test.nvim/", config = true },
 	-- {
 	-- 	"folke/todo-comments.nvim",
 	-- 	dependencies = { "nvim-lua/plenary.nvim" },
@@ -115,7 +115,13 @@ require("lazy").setup({
 			-- Provide installation for Lsp, DAP, Lint, Formatter
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
-			"nvimtools/none-ls.nvim", -- Provide hooks to lsp
+			-- "nvimtools/none-ls.nvim", -- Provide hooks to lsp
+			{
+				"stevearc/conform.nvim",
+				config = function()
+					require("guilhas07.formatter")
+				end,
+			},
 			{ "j-hui/fidget.nvim", config = true }, -- opts = { window = { blend = 0 } } },
 			"mfussenegger/nvim-jdtls",
 			"Hoffs/omnisharp-extended-lsp.nvim",

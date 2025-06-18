@@ -6,9 +6,6 @@ local servers = utils.servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
--- Setup null_ls
-require("guilhas07.lsp.null_ls").setup(on_attach)
-
 -- Setup LSP servers
 local lspconfig = require("lspconfig")
 

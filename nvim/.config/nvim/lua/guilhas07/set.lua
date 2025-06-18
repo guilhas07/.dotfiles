@@ -60,6 +60,7 @@ vim.opt.foldtext = ""
 vim.opt.virtualedit = "all"
 vim.opt.startofline = false
 
+vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 -- vim.g.clipboard = {
 --     name = 'Kitty',
 --     copy = {

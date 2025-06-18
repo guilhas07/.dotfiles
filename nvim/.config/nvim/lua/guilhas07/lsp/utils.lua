@@ -211,9 +211,6 @@ function M.on_attach(client, bufnr)
 
 	-- toggle inlay_hints
 	if client.server_capabilities.inlayHintProvider then
-		-- NOTE: use a table for each branch because if buf_inlay_hints returns false
-		-- than the `or` would be evaluated becoming true
-		-- local enable = (buf_inlay_hints[bufnr] ~= nil and { buf_inlay_hints[bufnr] } or { true })[1]
 		vim.lsp.inlay_hint.enable(true, nil)
 		vim.keymap.set("n", "<leader>th", function()
 			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(), nil)
@@ -224,16 +221,16 @@ function M.on_attach(client, bufnr)
 		client.server_capabilities.hoverProvider = false
 	end
 	-- auto formatting
-	if client.supports_method("textDocument/formatting") then
-		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			group = augroup,
-			buffer = bufnr,
-			callback = function()
-				lsp_formatting(bufnr)
-			end,
-		})
-	end
+	-- if client.supports_method("textDocument/formatting") then
+	-- 	vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+	-- 	vim.api.nvim_create_autocmd("BufWritePre", {
+	-- 		group = augroup,
+	-- 		buffer = bufnr,
+	-- 		callback = function()
+	-- 			lsp_formatting(bufnr)
+	-- 		end,
+	-- 	})
+	-- end
 end
 
 -- Servers config
