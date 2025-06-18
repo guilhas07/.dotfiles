@@ -14,12 +14,11 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-
     -- Comments
-    "numToStr/Comment.nvim",
+    { "numToStr/Comment.nvim", config = true },
 
     -- AutoPairs
-    "windwp/nvim-autopairs",
+    { "windwp/nvim-autopairs", config = true },
 
     {
         -- Lsp
@@ -29,6 +28,8 @@ require("lazy").setup({
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             "jose-elias-alvarez/null-ls.nvim", -- Provide hooks to lsp
+            { "j-hui/fidget.nvim", config = true },
+            { "folke/neodev.nvim", config = true },
         },
         config = function()
             require("guilhas07.lsp")
@@ -90,21 +91,19 @@ require("lazy").setup({
     --Icons
     "kyazdani42/nvim-web-devicons",
 
-    {
-        -- Status Line
-        "nvim-lualine/lualine.nvim",
-        config = function()
-            require("guilhas07.statusline")
-        end,
-    },
+    -- Status Line
+    { "nvim-lualine/lualine.nvim",                config = true },
 
     -- ColorSchemes
-    --  'gruvbox-community/gruvbox',
     "ellisonleao/gruvbox.nvim",
     "tomasr/molokai",
+    "olimorris/onedarkpro.nvim",
+    { "rose-pine/neovim", name = "rose-pine" },
+    "folke/tokyonight.nvim",
 
     -- 'norcalli/nvim-colorizer.lua',
     "mbbill/undotree",
 }, { ui = { border = "rounded" } })
+
 require("guilhas07.set")
 require("guilhas07.remaps")
