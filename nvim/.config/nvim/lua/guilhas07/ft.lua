@@ -1,11 +1,5 @@
 local group = "guilhas07"
 
-vim.filetype.add({
-	extension = {
-		templ = "templ",
-	},
-})
-
 vim.api.nvim_create_autocmd("TermOpen", {
 	group = vim.api.nvim_create_augroup(group .. ":Term ft", {}),
 	callback = function()
