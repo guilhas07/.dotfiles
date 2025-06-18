@@ -1,3 +1,7 @@
+-- TODO: improve snippet experience
+-- see https://github.com/MariaSolOs/dotfiles/blob/fedora/.config/nvim/lua/plugins/nvim-cmp.lua
+-- for inspiration
+
 local ls = require("luasnip")
 
 ls.setup({

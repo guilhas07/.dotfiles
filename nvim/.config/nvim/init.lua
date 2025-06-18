@@ -118,6 +118,7 @@ require("lazy").setup({
 			"nvimtools/none-ls.nvim", -- Provide hooks to lsp
 			{ "j-hui/fidget.nvim", config = true }, -- opts = { window = { blend = 0 } } },
 			"mfussenegger/nvim-jdtls",
+			"Hoffs/omnisharp-extended-lsp.nvim",
 			{
 				"mrcjkb/rustaceanvim",
 				-- version = "^3", -- Recommended
@@ -135,7 +136,27 @@ require("lazy").setup({
 			require("guilhas07.lsp")
 		end,
 	},
-	"Hoffs/omnisharp-extended-lsp.nvim",
+	{
+		"mfussenegger/nvim-dap",
+		-- NOTE: And you can specify dependencies as well
+		dependencies = {
+			-- Creates a beautiful debugger UI
+			"rcarriga/nvim-dap-ui",
+
+			-- Required dependency for nvim-dap-ui
+			"nvim-neotest/nvim-nio",
+
+			-- Installs the debug adapters for you
+			"williamboman/mason.nvim",
+			"jay-babu/mason-nvim-dap.nvim",
+
+			-- Add your own debuggers here
+			"leoluz/nvim-dap-go",
+		},
+		config = function()
+			require("guilhas07.debug")
+		end,
+	},
 	{
 		-- CMP
 		"hrsh7th/nvim-cmp",
@@ -209,6 +230,9 @@ require("lazy").setup({
 		opts = {
 			input = {
 				insert_only = false,
+				-- win_options = {
+				-- 	winblend = 100,
+				-- },
 			},
 		},
 	},
@@ -226,6 +250,20 @@ require("lazy").setup({
 	{ "catppuccin/nvim", name = "catppuccin" },
 	"folke/tokyonight.nvim",
 	"rebelot/kanagawa.nvim",
+	{
+		"scottmckendry/cyberdream.nvim",
+		config = function()
+			require("cyberdream").setup({
+				-- Recommended - see "Configuring" below for more config options
+				transparent = true,
+				italic_comments = true,
+				hide_fillchars = true,
+				borderless_telescope = true,
+				terminal_colors = true,
+			})
+			-- vim.cmd("colorscheme cyberdream") -- set the colorscheme
+		end,
+	},
 	-- 'norcalli/nvim-colorizer,
 	"mbbill/undotree",
 }, { ui = { border = "rounded" }, checker = { enabled = true } })
