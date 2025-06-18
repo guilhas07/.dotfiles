@@ -159,6 +159,7 @@ end
 local M = {}
 
 -- LspAttach Function
+local buf_inlay_hints = {} -- keep track of inlay hints per buffer
 function M.on_attach(client, bufnr)
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
@@ -168,15 +169,23 @@ function M.on_attach(client, bufnr)
 	vim.keymap.set("n", "<leader>sh", vim.lsp.buf.signature_help, bufopts)
 	vim.keymap.set("n", "<leader>[d", vim.diagnostic.goto_next, bufopts)
 	vim.keymap.set("n", "<leader>]d", vim.diagnostic.goto_prev, bufopts)
+	vim.keymap.set("n", "<leader>do", vim.diagnostic.open_float, bufopts)
 	vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, bufopts)
 	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
 	vim.keymap.set("n", "<leader>f", lsp_formatting, bufopts)
 
 	-- toggle inlay_hints
 	if client.server_capabilities.inlayHintProvider then
-		vim.lsp.inlay_hint.enable(bufnr, not vim.lsp.inlay_hint.is_enabled(bufnr))
+		-- NOTE: use a table for each branch because if buf_inlay_hints returns false
+		-- than the `or` would be evaluated becoming true
+		local enable = (buf_inlay_hints[bufnr] ~= nil and { buf_inlay_hints[bufnr] } or { true })[1]
+		vim.lsp.inlay_hint.enable(bufnr, enable)
 		vim.keymap.set("n", "<leader>th", function()
-			vim.lsp.inlay_hint.enable(bufnr, not vim.lsp.inlay_hint.is_enabled(bufnr))
+			-- NOTE: I believe if we don't do this, then the keymap will only act on the last buffer
+			-- where the Lsp was attached
+			local buf = vim.api.nvim_get_current_buf()
+			buf_inlay_hints[buf] = not vim.lsp.inlay_hint.is_enabled(buf)
+			vim.lsp.inlay_hint.enable(buf, buf_inlay_hints[buf])
 		end)
 	end
 	if client.name == "ruff_lsp" then
