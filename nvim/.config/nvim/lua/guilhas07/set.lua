@@ -44,7 +44,21 @@ vim.o.completeopt = "menu,menuone,noselect"
 
 vim.o.clipboard = "unnamedplus"
 
--- Don't pass messages to |ins-completion-menu|.
+if vim.fn.has("wsl") then
+	vim.g.clipboard = {
+		name = "WslClipboard",
+		copy = {
+			["+"] = "clip.exe",
+			["*"] = "clip.exe",
+		},
+		paste = {
+			["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+			["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+		},
+		cache_enabled = 0,
+	}
+end
+
 vim.opt_local.shortmess:append("c")
 
 vim.opt.foldmethod = "indent"
