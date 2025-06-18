@@ -12,6 +12,7 @@ require("telescope").setup({
             },
         },
     },
+    path_display = "smart",
 })
 
 require("telescope").load_extension("fzf")
@@ -38,7 +39,7 @@ vim.keymap.set("n", "<c-p>", function()
     builtin.git_files(themes.get_dropdown({ previewer = false, show_untracked = true }))
 end)
 
-vim.keymap.set("n", "<c-_>", function()
+vim.keymap.set("n", "<c-/>", function()
     builtin.current_buffer_fuzzy_find({
         sorting_strategy = "ascending",
         layout_config = { prompt_position = "top" },
