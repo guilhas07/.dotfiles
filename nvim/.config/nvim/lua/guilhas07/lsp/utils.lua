@@ -1,15 +1,23 @@
 local border = "rounded"
 
-local signs = {
-	Error = " ",
-	Warn = " ",
-	Hint = " ",
-	Info = " ",
+local signs_hl = {
+	[vim.diagnostic.severity.ERROR] = { " ", "Error" },
+	[vim.diagnostic.severity.WARN] = { " ", "Warn" },
+	[vim.diagnostic.severity.HINT] = { " ", "Hint" },
+	[vim.diagnostic.severity.INFO] = { " ", "Info" },
 }
 
-for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+local signs = {
+	text = {},
+	texthl = {},
+	numhl = {},
+}
+
+for type, data in pairs(signs_hl) do
+	local hl = "DiagnosticSign" .. data[2]
+	signs.text[type] = data[1]
+	signs.texthl[type] = hl
+	signs.numhl[type] = hl
 end
 
 vim.diagnostic.config({
@@ -17,7 +25,9 @@ vim.diagnostic.config({
 	float = { --[[ source = "always", ]]
 		border = border,
 	},
+	signs = signs,
 })
+
 require("lspconfig.ui.windows").default_options.border = border
 require("mason").setup({ ui = { border = border } })
 
@@ -30,8 +40,14 @@ vim.lsp.handlers["textDocument/definition"] = function(_, result, ctx)
 		print("[LSP]: No definition found")
 		return
 	end
+
 	local client = vim.lsp.get_client_by_id(ctx.client_id)
-	if vim.tbl_islist(result) then
+	if client == nil then
+		print("[LSP]: Couldn't get client with id " .. ctx.client_id)
+		return
+	end
+
+	if vim.islist(result) then
 		vim.lsp.util.jump_to_location(result[1], client.offset_encoding)
 	else
 		vim.lsp.util.jump_to_location(result, client.offset_encoding)
