@@ -74,7 +74,9 @@ vim.keymap.set("n", "<leader>fd", function()
 	builtin.find_files({ cwd = "~/.dotfiles/", hidden = true })
 end)
 
-vim.keymap.set("n", "<c-p>", builtin.git_files)
+vim.keymap.set("n", "<c-p>", function()
+	builtin.git_files({ show_untracked = true })
+end)
 
 local key = _G.IS_WSL and "<c-_>" or "<c-/"
 vim.keymap.set("n", key, function()
