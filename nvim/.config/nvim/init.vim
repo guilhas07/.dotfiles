@@ -45,29 +45,16 @@ call plug#begin('~/.vim/plugged')
 " Dependency for multiple plugins 
 Plug 'nvim-lua/plenary.nvim' 
 
-" ColorSchemes
-" Plug 'gruvbox-community/gruvbox'
-Plug 'ellisonleao/gruvbox.nvim'
-Plug 'tomasr/molokai'
-
-" Provides vim.ui.input and select overrides
-Plug 'stevearc/dressing.nvim'
-
-" Provide hooks to lsp
-Plug 'jose-elias-alvarez/null-ls.nvim'
-
-" Lsp
-Plug 'neovim/nvim-lspconfig'
-
 " Provide installation for Lsp, DAP, Lint, Formatter
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 
+" Lsp
+Plug 'neovim/nvim-lspconfig'
+Plug 'onsails/lspkind-nvim'
 
-" Snips
-Plug 'L3MON4D3/LuaSnip'
-Plug 'saadparwaiz1/cmp_luasnip'
-Plug 'rafamadriz/friendly-snippets'
+" Provide hooks to lsp
+Plug 'jose-elias-alvarez/null-ls.nvim'
 
 " Cmp
 Plug 'hrsh7th/nvim-cmp'
@@ -79,8 +66,10 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 " AutoPairs
 Plug 'windwp/nvim-autopairs'
 
-"vscode-like pictograms to neovim built-in lsp
-Plug 'onsails/lspkind-nvim'
+" Snips
+Plug 'L3MON4D3/LuaSnip'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'rafamadriz/friendly-snippets'
 
 "Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -89,11 +78,25 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', {'do': 'make'}
 
+" Provides vim.ui.input and select overrides
+Plug 'stevearc/dressing.nvim'
+
 "Icons
 Plug 'kyazdani42/nvim-web-devicons'
 
-"Plug 'norcalli/nvim-colorizer.lua'
+" Comments
 Plug 'numToStr/Comment.nvim'
+
+" Status Line
+Plug 'nvim-lualine/lualine.nvim'
+
+" ColorSchemes
+" Plug 'gruvbox-community/gruvbox'
+Plug 'ellisonleao/gruvbox.nvim'
+Plug 'tomasr/molokai'
+
+"Plug 'norcalli/nvim-colorizer.lua'
+
 
 call plug#end()
 
