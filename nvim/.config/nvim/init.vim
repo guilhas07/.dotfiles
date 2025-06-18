@@ -97,9 +97,8 @@ Plug 'ellisonleao/gruvbox.nvim'
 Plug 'tomasr/molokai'
 
 "Plug 'norcalli/nvim-colorizer.lua'
-
+Plug 'mbbill/undotree'
 
 call plug#end()
-
-let mapleader=" " 
+let mapleader=" "
 lua require("guilhas07")
