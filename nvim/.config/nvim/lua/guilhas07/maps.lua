@@ -1,16 +1,6 @@
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
 
-vim.ui.open = (function(overridden)
-	return function(path, opt)
-        -- Use explorer.exe in wsl
-        if vim.fn.executable("explorer.exe") == 1 then
-            opt = {cmd = { 'explorer.exe'}}
-        end
-		return overridden(path, opt)
-	end
-end)(vim.ui.open)
-
 keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, opts)
 keymap.set("n", "<leader>pv", vim.cmd.Oil, opts)
 keymap.set("n", "<leader>ng", vim.cmd.Neogen, opts)
