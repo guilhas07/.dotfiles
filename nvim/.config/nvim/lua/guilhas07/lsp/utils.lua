@@ -125,7 +125,6 @@ local servers = {
 			},
 		},
 	},
-	-- ruff_lsp = {},
 	ruff = {},
 	-- html = {},
 	-- cssls = {},
@@ -193,8 +192,9 @@ function M.on_attach(client, bufnr)
 		vim.keymap.set("n", "<leader>th", function()
 			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(), nil)
 		end)
+		require("guilhas07.autocmd").inlay_hint(bufnr)
 	end
-	if client.name == "ruff_lsp" then
+	if client.name == "ruff" then
 		-- Disable hover in favor of Pyright
 		client.server_capabilities.hoverProvider = false
 	end
