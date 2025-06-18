@@ -19,6 +19,16 @@ require("guilhas07.remaps")
 require("lazy").setup({
 
     { dir = "~/Documents/test.nvim/", config = true },
+    {
+        "stevearc/oil.nvim",
+        -- Optional dependencies
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        opts = {
+            keymaps = {
+                ["<C-p>"] = false,
+            },
+        },
+    },
     { "folke/zen-mode.nvim",          config = true },
     {
         "rcarriga/nvim-notify",
@@ -48,12 +58,12 @@ require("lazy").setup({
             },
             hints = {
                 ["[bB][eE]"] = {
-                    message = function (keys)
+                    message = function(keys)
                         return "Use g" .. keys:sub(2) .. " instead of " .. keys
                     end,
-                    length = 2
-                }
-            }
+                    length = 2,
+                },
+            },
         },
     },
     --AutoPairs
@@ -69,7 +79,7 @@ require("lazy").setup({
         --     show_trailing_blankline_indent = false,
         -- },
         main = "ibl",
-        event = "VeryLazy"
+        event = "VeryLazy",
     },
     {
         -- Adds git releated signs to the gutter, as well as utilities for managing changes
