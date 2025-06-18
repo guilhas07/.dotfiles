@@ -115,7 +115,7 @@ require("lazy").setup({
 			-- Provide installation for Lsp, DAP, Lint, Formatter
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
-			"jose-elias-alvarez/null-ls.nvim", -- Provide hooks to lsp
+			"nvimtools/none-ls.nvim", -- Provide hooks to lsp
 			{ "j-hui/fidget.nvim", config = true }, -- opts = { window = { blend = 0 } } },
 			"mfussenegger/nvim-jdtls",
 			{
