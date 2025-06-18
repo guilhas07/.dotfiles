@@ -93,7 +93,7 @@ end
 
 -- Insure LSPs are installed
 require("mason-lspconfig").setup({
-    ensure_installed = ensure_installed,
+    -- ensure_installed = ensure_installed,
 })
 
 -- Setup autoformmating
