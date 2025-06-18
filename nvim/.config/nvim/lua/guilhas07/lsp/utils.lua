@@ -188,14 +188,10 @@ function M.on_attach(client, bufnr)
 	if client.server_capabilities.inlayHintProvider then
 		-- NOTE: use a table for each branch because if buf_inlay_hints returns false
 		-- than the `or` would be evaluated becoming true
-		local enable = (buf_inlay_hints[bufnr] ~= nil and { buf_inlay_hints[bufnr] } or { true })[1]
-		vim.lsp.inlay_hint.enable(bufnr, enable)
+		-- local enable = (buf_inlay_hints[bufnr] ~= nil and { buf_inlay_hints[bufnr] } or { true })[1]
+		vim.lsp.inlay_hint.enable(true, nil)
 		vim.keymap.set("n", "<leader>th", function()
-			-- NOTE: I believe if we don't do this, then the keymap will only act on the last buffer
-			-- where the Lsp was attached
-			local buf = vim.api.nvim_get_current_buf()
-			buf_inlay_hints[buf] = not vim.lsp.inlay_hint.is_enabled(buf)
-			vim.lsp.inlay_hint.enable(buf, buf_inlay_hints[buf])
+			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(), nil)
 		end)
 	end
 	if client.name == "ruff_lsp" then
