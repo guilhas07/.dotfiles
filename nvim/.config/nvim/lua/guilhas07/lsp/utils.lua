@@ -38,22 +38,6 @@ vim.lsp.handlers["textDocument/definition"] = function(_, result, ctx)
 	end
 end
 
--- print("giro" .. vim.fs.find(".venv", {
--- 	upward = true,
--- 	stop = vim.uv.os_homedir(),
--- 	path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)),
--- 	type = "directory",
--- })[1])
-
-local function find(path, type)
-	return vim.fs.find(path, {
-		upward = true,
-		stop = vim.uv.os_homedir(),
-		path = vim.fn.getcwd(),
-		type = type,
-	})[1]
-end
-
 local servers = {
 	lua_ls = {
 		settings = {
@@ -102,7 +86,15 @@ local servers = {
 			},
 			python = {
 				venv = ".venv",
-				venvPath = vim.fs.dirname(find(".venv", "directory")) .. "/",
+				venvPath = (function()
+					local path = vim.fs.find(".venv", {
+						upward = true,
+						stop = vim.uv.os_homedir(),
+						path = vim.fn.getcwd(),
+						type = "directory",
+					})[1]
+					return path ~= nil and (vim.fs.dirname(path) .. "/") or nil
+				end)(),
 				analysis = {
 					-- Ignore all files for analysis to exclusively use Ruff for linting
 					-- ignore = { '*' },
