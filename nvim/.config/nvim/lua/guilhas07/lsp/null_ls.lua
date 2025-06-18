@@ -11,6 +11,7 @@ function M.setup(on_attach)
         sources = {
             b.formatting.stylua,
             b.formatting.prettier,
+            b.formatting.xmlformat,
             --b.formatting.fixjson,
             --b.diagnostics.selene.with(),
         },

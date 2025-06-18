@@ -1,6 +1,6 @@
 local ls = require("luasnip")
 
-ls.config.set_config({
+ls.setup({
     -- jump back to snippet
     history = true,
     -- Update dynamic snippets as you type

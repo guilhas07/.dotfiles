@@ -1,8 +1,0 @@
-require("guilhas07.lsp")
-require("guilhas07.cmp")
-require("guilhas07.treesitter")
-require("guilhas07.telescope")
-require("guilhas07.snippet")
-require("guilhas07.plugins")
-require("guilhas07.statusline")
-require("guilhas07.remaps")
