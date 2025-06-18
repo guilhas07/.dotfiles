@@ -1,6 +1,17 @@
+-- remove comment on new line
+vim.api.nvim_create_autocmd("FileType", {
+    -- group = nil,
+    pattern = { "*" },
+    callback = function()
+        vim.opt.formatoptions:remove({ "o" })
+    end,
+})
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
+
+-- vim.opt.colorcolumn = "80"
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -41,3 +52,16 @@ vim.opt.foldenable = false
 
 vim.opt.virtualedit = "all"
 vim.opt.startofline = false
+
+-- vim.g.clipboard = {
+--     name = 'Kitty',
+--     copy = {
+--         ['+'] = '| kitty +kitten clipboard',
+--         ['*'] = '| kitty +kitten clipboard',
+--     },
+--     paste = {
+--         ['+'] = 'kitty +kitten clipboard -g',
+--         ['*'] = 'kitty +kitten clipboard -g',
+--     },
+--     cache_enabled = 0,
+-- }

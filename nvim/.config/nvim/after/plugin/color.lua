@@ -21,4 +21,4 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     group = group,
 })
 
-vim.cmd.colorscheme("gruvbox")
+vim.cmd.colorscheme("kanagawa")
