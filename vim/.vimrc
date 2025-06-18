@@ -2,6 +2,9 @@
 "For inline comments add a pipe(|) before double quote
 
 syntax on
+
+set termguicolors
+set background=dark
 "Stops error sounds
 set noerrorbells 
 "4 tab and 4 spaces and 4 >>
