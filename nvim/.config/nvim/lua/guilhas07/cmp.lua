@@ -1,6 +1,7 @@
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 
+local window_opts = { scrollbar = false }
 cmp.setup({
     snippet = {
         expand = function(args)
@@ -41,8 +42,8 @@ cmp.setup({
         entries = { name = "custom", selection_order = "near_cursor" },
     },
     window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
+        completion = cmp.config.window.bordered(window_opts),
+        documentation = cmp.config.window.bordered(window_opts),
     },
 })
 
