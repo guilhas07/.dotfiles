@@ -253,6 +253,11 @@ require("lazy").setup({
 				-- win_options = {
 				-- 	winblend = 100,
 				-- },
+				get_config = function(opts)
+					if opts.relative then
+						return { relative = opts.relative, width = 0.9 }
+					end
+				end,
 			},
 		},
 	},
