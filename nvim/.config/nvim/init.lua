@@ -120,7 +120,6 @@ require("lazy").setup({
 		dependencies = {
 			-- Provide installation for Lsp, DAP, Lint, Formatter
 			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
 			-- "nvimtools/none-ls.nvim", -- Provide hooks to lsp
 			{ "j-hui/fidget.nvim", config = true }, -- opts = { window = { blend = 0 } } },
 			"mfussenegger/nvim-jdtls",
@@ -142,6 +141,7 @@ require("lazy").setup({
 			require("guilhas07.lsp")
 		end,
 	},
+
 	-- Formatting and linting
 	{
 		"stevearc/conform.nvim",
