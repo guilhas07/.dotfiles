@@ -31,6 +31,14 @@ require("lazy").setup({
     },
     { "folke/zen-mode.nvim",          config = true },
     {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function()
+            require("guilhas07.harpoon")
+        end,
+    },
+    {
         "rcarriga/nvim-notify",
         init = function()
             vim.notify = require("notify")
@@ -112,11 +120,11 @@ require("lazy").setup({
                 config = function()
                     vim.g.rustaceanvim = {
                         server = {
-                            on_attach = require("guilhas07.lsp.utils").on_attach
+                            on_attach = require("guilhas07.lsp.utils").on_attach,
                         },
                     }
                 end,
-            }
+            },
         },
         config = function()
             require("guilhas07.lsp")
