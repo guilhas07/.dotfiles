@@ -73,10 +73,13 @@ local servers = {
 					compositeLiteralFields = true,
 					constantValues = true,
 					parameterNames = true,
+					rangeVariableTypes = true,
 				},
+				["ui.diagnostic.staticcheck"] = true,
 			},
 		},
 	},
+	templ = {},
 	-- jdtls = {
 	--
 	--    },
@@ -132,6 +135,13 @@ local servers = {
 			["textDocument/definition"] = require("omnisharp_extended").handler,
 		},
 	},
+	-- sqls = {
+	-- 	settings = {
+	-- 		sqls = {
+	-- 			connections = { { driver = "sqlite3", dataSourceName = "/home/guilherme/teste.db" } },
+	-- 		},
+	-- 	},
+	-- },
 }
 
 local ensure_installed = {}
