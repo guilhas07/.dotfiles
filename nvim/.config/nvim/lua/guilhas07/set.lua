@@ -54,7 +54,7 @@ vim.opt_local.shortmess:append("c")
 
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldenable = false
+vim.opt.foldenable = false -- Use zi to toggle folds
 vim.opt.foldtext = ""
 
 vim.opt.virtualedit = "all"
