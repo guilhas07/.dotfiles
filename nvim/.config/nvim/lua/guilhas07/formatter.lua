@@ -1,4 +1,12 @@
 local function add_prettier()
+	local prettier_settings = {
+		formatters_by_ft = {},
+		formatters = {
+			prettier = {
+				require_cwd = true,
+			},
+		},
+	}
 	-- inspired by LazyVim: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/formatting/prettier.lua
 	local supported = {
 		"css",
@@ -22,11 +30,10 @@ local function add_prettier()
 		"htmlangular",
 	}
 
-	local formatters_by_ft = {}
-	for _, ft in ipairs(supported) do
-		formatters_by_ft[ft] = { "prettier" }
+	for _, ft in pairs(supported) do
+		prettier_settings["formatters_by_ft"][ft] = { "prettier" }
 	end
-	return { formatters_by_ft = formatters_by_ft }
+	return prettier_settings
 end
 
 local opts = {
