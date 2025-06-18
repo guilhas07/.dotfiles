@@ -5,7 +5,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
 		-- for the current filetype
 		lint.try_lint(nil, { ignore_errors = true })
 
-		local skip_fts = { "oil", "TelescopePrompt", "TelescopeResults" }
+		local skip_fts = { "oil", "TelescopePrompt", "TelescopeResults", "qf", "DressingInput" }
 		if vim.iter(skip_fts):any(function(el)
 			return el == vim.bo.filetype
 		end) then
