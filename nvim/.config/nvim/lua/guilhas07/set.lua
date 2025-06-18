@@ -1,12 +1,3 @@
--- remove comment on new line
-vim.api.nvim_create_autocmd("FileType", {
-    -- group = nil,
-    pattern = { "*" },
-    callback = function()
-        vim.opt.formatoptions:remove({ "o", "r"})
-    end,
-})
-
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true

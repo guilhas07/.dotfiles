@@ -13,10 +13,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("guilhas07.set")
-require("guilhas07.remaps")
-require("guilhas07.autocmd")
-
 require("lazy").setup({
 
 	{ dir = "~/test.nvim/", config = true },
@@ -70,9 +66,9 @@ require("lazy").setup({
 			disable_mouse = false,
 			allow_different_key = true,
 			max_time = 500,
-			restricted_keys = {
-				["<C-P>"] = {},
-			},
+			-- restricted_keys = {
+			-- 	["<C-P>"] = {},
+			-- },
 			hints = {
 				["[bB][eE]"] = {
 					message = function(keys)
@@ -119,12 +115,12 @@ require("lazy").setup({
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"jose-elias-alvarez/null-ls.nvim", -- Provide hooks to lsp
-			-- { "j-hui/fidget.nvim", opts = { window = { blend = 0 } } },
+			{ "j-hui/fidget.nvim", config = true }, -- opts = { window = { blend = 0 } } },
 			"mfussenegger/nvim-jdtls",
 			{
 				"mrcjkb/rustaceanvim",
 				-- version = "^3", -- Recommended
-				ft = { "rust" },
+				-- ft = { "rust" },
 				config = function()
 					vim.g.rustaceanvim = {
 						server = {
@@ -232,3 +228,9 @@ require("lazy").setup({
 	-- 'norcalli/nvim-colorizer,
 	"mbbill/undotree",
 }, { ui = { border = "rounded" }, checker = { enabled = true } })
+
+require("guilhas07.set")
+require("guilhas07.remaps")
+require("guilhas07.autocmd")
+require("guilhas07.ft")
+require("guilhas07.color")
