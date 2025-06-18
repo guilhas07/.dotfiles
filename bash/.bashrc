@@ -17,3 +17,4 @@ export EDITOR="nvim"
 
 alias vim="nvim"
 alias lg="lazygit"
+alias dot="cd ~/.dotfiles/"
