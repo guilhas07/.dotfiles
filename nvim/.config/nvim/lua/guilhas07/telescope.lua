@@ -10,17 +10,15 @@ local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 
 telescope.setup({
-	pickers = {
-		find_files = {
-			mappings = {
-				i = {
-					["<C-n>"] = "move_selection_previous",
-					["<C-p>"] = "move_selection_next",
-				},
-			},
-		},
-	},
-	path_display = "smart",
+    defaults = {
+        mappings = {
+            i = {
+                ["<C-n>"] = "move_selection_previous",
+                ["<C-p>"] = "move_selection_next",
+            },
+        },
+        path_display = {"smart"},
+    },
 })
 
 local private_plugin = {}
