@@ -42,6 +42,9 @@ local servers = {
     lua_ls = {
         settings = {
             Lua = {
+                format = {
+                    enable = false
+                },
                 hint = {
                     enable = true,
                 },
