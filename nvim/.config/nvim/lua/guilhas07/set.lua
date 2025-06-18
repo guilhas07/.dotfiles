@@ -3,7 +3,7 @@ vim.api.nvim_create_autocmd("FileType", {
     -- group = nil,
     pattern = { "*" },
     callback = function()
-        vim.opt.formatoptions:remove({ "o" })
+        vim.opt.formatoptions:remove({ "o", "r"})
     end,
 })
 
