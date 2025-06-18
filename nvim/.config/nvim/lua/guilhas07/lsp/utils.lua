@@ -9,7 +9,7 @@ vim.diagnostic.config({
 require("lspconfig.ui.windows").default_options.border = border
 
 -- Configure handlers
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
 vim.lsp.handlers["textDocument/definition"] = function(_, result, ctx)
     -- Always go to first definition
@@ -83,6 +83,7 @@ function M.on_attach(client, bufnr)
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
     vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, bufopts)
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+    vim.keymap.set("n", "<leader>sh", vim.lsp.buf.signature_help, bufopts)
     vim.keymap.set("n", "<leader>[d", vim.diagnostic.goto_next, bufopts)
     vim.keymap.set("n", "<leader>]d", vim.diagnostic.goto_prev, bufopts)
     vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, bufopts)

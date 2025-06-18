@@ -13,7 +13,7 @@ function M.setup(on_attach)
             b.formatting.prettier,
             b.formatting.fixjson,
             --b.diagnostics.selene.with(),
-            b.diagnostics.eslint,
+            --b.diagnostics.eslint,
         },
         border = border,
     })
