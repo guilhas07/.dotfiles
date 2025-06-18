@@ -1,7 +1,26 @@
 local builtin = require("telescope.builtin")
 local themes = require("telescope.themes")
 
-require("telescope").setup({})
+require("telescope").setup({
+    defaults = {
+        mappings = {
+            i = {
+                ["<C-u>"] = false,
+            },
+        },
+    },
+    pickers = {
+        find_files = {
+            mappings = {
+                i = {
+                    ["<C-n>"] = "move_selection_previous",
+                    ["<C-p>"] = "move_selection_next",
+                },
+            },
+        },
+    },
+})
+
 require("telescope").load_extension("fzf")
 
 -- KeyMaps --
