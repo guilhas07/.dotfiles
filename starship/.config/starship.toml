@@ -1,6 +1,10 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 add_newline = false
 
+[[battery.display]]
+threshold = 40
+style = 'bold red'
+
 [aws]
 symbol = "  "
 
