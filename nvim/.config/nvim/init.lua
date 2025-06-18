@@ -148,13 +148,12 @@ require("lazy").setup({
 			require("guilhas07.formatter")
 		end,
 	},
-	-- {
-	-- 	"mfussenegger/nvim-lint",
-	-- 	config = function()
-	-- 		require("guilhas07.lint")
-	-- 	end,
-	-- },
-
+	{
+		"mfussenegger/nvim-lint",
+		config = function()
+			require("guilhas07.lint")
+		end,
+	},
 	-- Debugging
 	{
 		"mfussenegger/nvim-dap",
