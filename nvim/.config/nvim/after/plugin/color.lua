@@ -1,22 +1,17 @@
 local colorize = function()
-    local color = vim.g.colors_name
-    vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" })
-    vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
-    vim.api.nvim_set_hl(0, "CursorLineNR", { fg = "#fabd2f", bg = "none" })
-    vim.api.nvim_set_hl(0, "LineNr", { fg = "#5eacd3" })
-    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-    vim.api.nvim_set_hl(0, "NormalNC", {link = "Normal"})
-    vim.api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })
-    vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
-    vim.api.nvim_set_hl(0, "DiagnosticSignError", { link = "DiagnosticError" })
-    vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { link = "DiagnosticWarn" })
-    vim.api.nvim_set_hl(0, "DiagnosticSignHint", { link = "DiagnosticHint" })
-    vim.api.nvim_set_hl(0, "DiagnosticSignInfo", { link = "DiagnosticInfo" })
-    vim.api.nvim_set_hl(0, '@lsp.type.comment', {})
-    
-    if color == "gruvbox" then
+
+    -- remove lsp comment highlighting
+    -- vim.api.nvim_set_hl(0, '@lsp.type.comment', {})
+
+    -- patch gruvbox colors
+    if vim.g.colors_name == "gruvbox" then
         -- clear semantic token for gruvbox functions
+        local cursor_hl = vim.api.nvim_get_hl(0, { name = "CursorLineNr" })
         vim.api.nvim_set_hl(0, "@lsp.type.function.lua", {})
+
+        -- fix sign/number column
+        vim.api.nvim_set_hl(0, "SignColumn", {})
+        vim.api.nvim_set_hl(0, "CursorLineNr", { fg = cursor_hl["fg"], bg = "none" })
     end
 end
 
@@ -26,4 +21,4 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     group = group,
 })
 
-vim.cmd.colorscheme("onedark")
+vim.cmd.colorscheme("gruvbox")
