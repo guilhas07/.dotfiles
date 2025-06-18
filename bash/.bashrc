@@ -14,6 +14,7 @@ PS1='[\u@\h \W]\$ '
 eval "$(starship init bash)"
 
 export EDITOR="nvim"
+export PATH="$PATH:/usr/local/go/bin:~/go/bin/"
 
 update-go () {
     if ! command -v gup 2>&1 >/dev/null
