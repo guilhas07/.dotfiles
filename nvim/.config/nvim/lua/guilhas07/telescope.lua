@@ -78,7 +78,10 @@ vim.keymap.set("n", "<leader>fd", function()
 end)
 
 vim.keymap.set("n", "<c-p>", function()
-	builtin.git_files({ show_untracked = true })
+	local ok = pcall(builtin.git_files, { show_untracked = true })
+	if not ok then
+		builtin.find_files({ hidden = true })
+	end
 end)
 
 local key = (_G.IS_WSL or vim.fn.exists("$TMUX") ~= 0) and "<c-_>" or "<c-/>"
