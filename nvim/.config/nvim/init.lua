@@ -16,6 +16,8 @@ vim.opt.rtp:prepend(lazypath)
 require("guilhas07.set")
 
 require("lazy").setup({
+
+    { "folke/zen-mode.nvim",   config = true },
     {
         "rcarriga/nvim-notify",
         config = function()
@@ -37,6 +39,7 @@ require("lazy").setup({
             "rcarriga/nvim-notify",
         },
         opts = {
+            disable_mouse = false,
             allow_different_key = true,
             max_time = 3000,
             restricted_keys = {
@@ -45,14 +48,18 @@ require("lazy").setup({
         },
     },
     --AutoPairs
-    { "windwp/nvim-autopairs", config = true },
+    { "windwp/nvim-autopairs",                    config = true },
     {
         -- Add indentation guides even on blank lines
         "lukas-reineke/indent-blankline.nvim",
         opts = {
-            char = "┊",
-            show_trailing_blankline_indent = false,
+            indent = {
+                char = "┊",
+            },
         },
+        --     show_trailing_blankline_indent = false,
+        -- },
+        main = "ibl"
     },
     {
         -- Adds git releated signs to the gutter, as well as utilities for managing changes
@@ -115,7 +122,6 @@ require("lazy").setup({
         -- dir = "~/nvim-treesitter/",
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
-        dependencies = "nvim-treesitter/playground",
         config = function()
             require("guilhas07.treesitter")
         end,
@@ -141,14 +147,14 @@ require("lazy").setup({
     "kyazdani42/nvim-web-devicons",
 
     -- Status Line
-    { "nvim-lualine/lualine.nvim",                config = true },
+    { "nvim-lualine/lualine.nvim", config = true },
 
     -- ColorSchemes
     "ellisonleao/gruvbox.nvim",
     "tomasr/molokai",
     "olimorris/onedarkpro.nvim",
-    { "rose-pine/neovim", name = "rose-pine" },
-    { "catppuccin/nvim",  name = "catppuccin" },
+    { "rose-pine/neovim",          name = "rose-pine" },
+    { "catppuccin/nvim",           name = "catppuccin" },
     "folke/tokyonight.nvim",
     "rebelot/kanagawa.nvim",
     -- 'norcalli/nvim-colorizer,

@@ -135,10 +135,6 @@ ex ()
   fi
 }
 
-# st DISPLAY variable to the IP automatically assigned to WSL2
-export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
-sudo/etc/init.d/dbus start &> /dev/null 
-
 export PATH="$PATH:/opt/miniZinc/bin/"
 
 export CVSROOT=:ext:ist196392@sigma.ist.utl.pt:/afs/ist.utl.pt/groups/leic-co/co22/a/cvs/046
@@ -146,6 +142,7 @@ alias ssh="ssh ist196392@sigma.tecnico.ulisboa.pt"
 
 source ~/bin/proj
 alias vim="nvim"
+alias lg="lazygit"
 source /usr/share/doc/fzf/examples/completion.bash
 source /usr/share/doc/fzf/examples/key-bindings.bash
 
@@ -153,7 +150,3 @@ source /usr/share/doc/fzf/examples/key-bindings.bash
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
-# Load Angular CLI autocompletion.
-source <(ng completion script)

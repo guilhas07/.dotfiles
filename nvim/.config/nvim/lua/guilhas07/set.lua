@@ -20,7 +20,8 @@ vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
 
-vim.opt.scrolloff = 8
+--vim.opt.scrolloff = 8
+vim.opt.scrolloff = 999
 vim.opt.signcolumn = "yes"
 -- vim.opt.isfname:append("@-@") ?? n sei o que faz
 
@@ -33,3 +34,9 @@ vim.o.clipboard = "unnamedplus"
 
 -- Don't pass messages to |ins-completion-menu|.
 vim.opt_local.shortmess:append("c")
+
+vim.opt.foldmethod = "indent"
+vim.opt.foldenable = false
+
+vim.opt.virtualedit = "all"
+vim.opt.startofline = false

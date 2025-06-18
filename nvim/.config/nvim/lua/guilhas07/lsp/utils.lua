@@ -51,7 +51,7 @@ local servers = {
     },
     eslint = {},
     tsserver = {},
-    clangd = {},
+    -- clangd = {},
     -- jdtls = {
     --
     --    },
@@ -60,10 +60,29 @@ local servers = {
     -- cssls = {},
     -- perlnavigator = {},
     bashls = {},
+    -- omnisharp_mono = {
+    --     -- settings = {
+    --     --     omnisharp = {
+    --     --         path = "latest",
+    --     --         useModernNet = false,
+    --     --     },
+    --     -- },
+    --     handlers = {
+    --         ["textDocument/definition"] = require("omnisharp_extended").handler,
+    --     },
+    -- },
     omnisharp = {
+    --     useModernNet = false,
+    --     settings = {
+    --         useModernNet = false,
+    --         omnisharp = {
+    --             path = "latest",
+    --             useModernNet = false,
+    --         },
+    --     },
         handlers = {
-            ["textDocument/definition"] = require('omnisharp_extended').handler,
-        }
+            ["textDocument/definition"] = require("omnisharp_extended").handler,
+        },
     },
 }
 
