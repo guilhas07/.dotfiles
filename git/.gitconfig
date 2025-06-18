@@ -2,6 +2,9 @@
 	email = guilhermesoares1970@gmail.com
 	name = Guilherme Soares
 
+[includeIf "gitdir:~/work/"]
+    path = ~/.gitconfig-work
+
 [init]
     defaultBranch = main
 [core]
