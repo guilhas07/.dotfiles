@@ -12,6 +12,6 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
 			return
 		end
 
-		require("lint").try_lint("cspell")
+		require("lint").try_lint("cspell", { ignore_errors = true })
 	end,
 })
