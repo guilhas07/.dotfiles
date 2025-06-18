@@ -114,7 +114,6 @@ require("lazy").setup({
 			"williamboman/mason-lspconfig.nvim",
 			"jose-elias-alvarez/null-ls.nvim", -- Provide hooks to lsp
 			-- { "j-hui/fidget.nvim", opts = { window = { blend = 0 } } },
-			{ "folke/neodev.nvim", config = true },
 			"mfussenegger/nvim-jdtls",
 			{
 				"mrcjkb/rustaceanvim",
