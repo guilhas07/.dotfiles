@@ -10,8 +10,8 @@ cmp.setup({
     mapping = cmp.mapping.preset.insert({
         ["<c-u>"] = cmp.mapping.scroll_docs(-4),
         ["<c-d>"] = cmp.mapping.scroll_docs(4),
-        ["<c-Space>"] = cmp.mapping.complete(),
-        ["<c-e>"] = cmp.mapping.close(),
+        ["<c-space>"] = cmp.mapping.complete(),
+        ["<c-e>"] = cmp.mapping.abort(),
         ["<c-y>"] = cmp.mapping.confirm({ select = true }),
     }),
     formatting = {
@@ -45,8 +45,6 @@ cmp.setup({
     },
 })
 
-local M = {}
-
-M.capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-return M
+-- Insert `(` after select function or method item
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())

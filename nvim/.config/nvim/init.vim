@@ -1,6 +1,8 @@
 "Comments in vim dont close
 "For inline comments add a pipe(|) before double quote
 
+"set foldmethod=expr
+"set foldexpr=nvim_treesitter#foldexpr()
 "4 tab and 4 spaces and 4 >>
 set tabstop=4 softtabstop=4 shiftwidth=4 
 "Converts tab to spaces
@@ -37,7 +39,6 @@ set shortmess+=c
 
 set completeopt=menu,menuone,noselect
 
-set fo-=o
 "Plugins
 call plug#begin('~/.vim/plugged')
 
@@ -75,6 +76,9 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-nvim-lsp'
 
+" AutoPairs
+Plug 'windwp/nvim-autopairs'
+
 "vscode-like pictograms to neovim built-in lsp
 Plug 'onsails/lspkind-nvim'
 
@@ -89,6 +93,7 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', {'do': 'make'}
 Plug 'kyazdani42/nvim-web-devicons'
 
 "Plug 'norcalli/nvim-colorizer.lua'
+Plug 'numToStr/Comment.nvim'
 
 call plug#end()
 

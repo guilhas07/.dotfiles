@@ -11,6 +11,19 @@ require("lspconfig.ui.windows").default_options.border = border
 -- Configure handlers
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
+vim.lsp.handlers["textDocument/definition"] = function(_, result, ctx)
+    -- Always go to first definition
+    if not result or vim.tbl_isempty(result) then
+        print("[LSP]: No definition found")
+        return
+    end
+    local client = vim.lsp.get_client_by_id(ctx.client_id)
+    if vim.tbl_islist(result) then
+        vim.lsp.util.jump_to_location(result[1], client.offset_encoding)
+    else
+        vim.lsp.util.jump_to_location(result, client.offset_encoding)
+    end
+end
 
 -- Setup Mason
 require("mason").setup({ ui = { border = border } })
@@ -19,6 +32,13 @@ local servers = {
     sumneko_lua = {
         settings = {
             Lua = {
+                runtime = {
+                    version = "LuaJIT",
+                },
+                workspace = {
+                    library = vim.api.nvim_get_runtime_file("", true),
+                    checkThirdParty = false,
+                },
                 diagnostics = {
                     globals = { "vim" },
                 },
@@ -61,6 +81,8 @@ function M.on_attach(client, bufnr)
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
     vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, bufopts)
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
     vim.keymap.set("n", "<leader>[d", vim.diagnostic.goto_next, bufopts)
     vim.keymap.set("n", "<leader>]d", vim.diagnostic.goto_prev, bufopts)
     vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, bufopts)
