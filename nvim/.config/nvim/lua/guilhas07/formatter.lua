@@ -1,27 +1,4 @@
 local function add_prettier()
-	local prettier_settings = {
-		formatters_by_ft = {},
-		formatters = {
-			prettier = {
-				require_cwd = true,
-				-- NOTE: Only activate prettier if one of these files is available
-				cwd = require("conform.util").root_file({
-					".prettierrc",
-					".prettierrc.json",
-					".prettierrc.yml",
-					".prettierrc.yaml",
-					".prettierrc.json5",
-					".prettierrc.js",
-					".prettierrc.cjs",
-					".prettierrc.mjs",
-					".prettierrc.toml",
-					"prettier.config.js",
-					"prettier.config.cjs",
-					"prettier.config.mjs",
-				}),
-			},
-		},
-	}
 	-- inspired by LazyVim: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/formatting/prettier.lua
 	local supported = {
 		"css",
@@ -45,21 +22,22 @@ local function add_prettier()
 		"htmlangular",
 	}
 
-	for _, ft in pairs(supported) do
-		prettier_settings["formatters_by_ft"][ft] = { "prettier" }
+	local formatters_by_ft = {}
+	for _, ft in ipairs(supported) do
+		formatters_by_ft[ft] = { "prettier" }
 	end
-	return prettier_settings
+	return { formatters_by_ft = formatters_by_ft }
 end
 
-local settings = {
+local opts = {
 	formatters_by_ft = {
 		lua = { "stylua" },
 		rust = { "rustfmt" },
 	},
 }
 
-settings = vim.tbl_deep_extend("keep", settings, add_prettier())
-require("conform").setup(settings)
+opts = vim.tbl_deep_extend("keep", opts, add_prettier())
+require("conform").setup(opts)
 
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
