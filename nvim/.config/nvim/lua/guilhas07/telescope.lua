@@ -29,7 +29,7 @@ vim.keymap.set("n", "gr", builtin.lsp_references)
 vim.keymap.set("n", "<leader>fb", builtin.buffers)
 vim.keymap.set("n", "<leader>fg", builtin.live_grep)
 vim.keymap.set("n", "<leader>h", builtin.help_tags)
-vim.keymap.set("n", "<leader>hm", function()
+vim.keymap.set("n", "<leader>m", function()
     builtin.man_pages({ sections = { "ALL" } })
 end)
 

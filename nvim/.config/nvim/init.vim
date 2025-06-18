@@ -39,6 +39,8 @@ set shortmess+=c
 
 set completeopt=menu,menuone,noselect
 
+set timeoutlen=250
+
 "Plugins
 call plug#begin('~/.vim/plugged')
 

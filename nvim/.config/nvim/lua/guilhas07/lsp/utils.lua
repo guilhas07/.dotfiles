@@ -57,6 +57,7 @@ local servers = {
     html = {},
     cssls = {},
     perlnavigator = {},
+    bashls = {},
 }
 
 local ensure_installed = {}
