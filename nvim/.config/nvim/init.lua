@@ -19,7 +19,27 @@ require("lazy").setup({
 
     -- AutoPairs
     { "windwp/nvim-autopairs", config = true },
-
+    {
+        -- Add indentation guides even on blank lines
+        "lukas-reineke/indent-blankline.nvim",
+        opts = {
+            char = "┊",
+            show_trailing_blankline_indent = false,
+        },
+    },
+    {
+        -- Adds git releated signs to the gutter, as well as utilities for managing changes
+        "lewis6991/gitsigns.nvim",
+        opts = {
+            signs = {
+                add = { text = "+" },
+                change = { text = "~" },
+                delete = { text = "_" },
+                topdelete = { text = "‾" },
+                changedelete = { text = "~" },
+            },
+        },
+    },
     {
         -- Lsp
         "neovim/nvim-lspconfig",
@@ -28,13 +48,13 @@ require("lazy").setup({
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             "jose-elias-alvarez/null-ls.nvim", -- Provide hooks to lsp
-            { "j-hui/fidget.nvim", config = true },
+            { "j-hui/fidget.nvim", opts = { window = { blend = 0 } } },
             { "folke/neodev.nvim", config = true },
+            "mfussenegger/nvim-jdtls",
         },
         config = function()
             require("guilhas07.lsp")
         end,
-        -- "mfussenegger/nvim-jdtls",
     },
 
     {
@@ -99,6 +119,7 @@ require("lazy").setup({
     "tomasr/molokai",
     "olimorris/onedarkpro.nvim",
     { "rose-pine/neovim", name = "rose-pine" },
+    { "catppuccin/nvim",  name = "catppuccin" },
     "folke/tokyonight.nvim",
 
     -- 'norcalli/nvim-colorizer.lua',
