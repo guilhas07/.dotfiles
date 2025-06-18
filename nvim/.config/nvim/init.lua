@@ -58,7 +58,7 @@ require("lazy").setup({
 		},
 	},
 	-- Comments
-	{ "numToStr/Comment.nvim", config = true },
+	-- { "numToStr/Comment.nvim", config = true },
 	{
 		"m4xshen/hardtime.nvim",
 		dependencies = {
@@ -123,7 +123,7 @@ require("lazy").setup({
 			"mfussenegger/nvim-jdtls",
 			{
 				"mrcjkb/rustaceanvim",
-				version = "^3", -- Recommended
+				-- version = "^3", -- Recommended
 				ft = { "rust" },
 				config = function()
 					vim.g.rustaceanvim = {
@@ -216,7 +216,7 @@ require("lazy").setup({
 		},
 	},
 	--Icons
-	"kyazdani42/nvim-web-devicons",
+	"nvim-tree/nvim-web-devicons",
 
 	-- Status Line
 	{ "nvim-lualine/lualine.nvim", config = true },
