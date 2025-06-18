@@ -1,0 +1,10 @@
+[$Version]
+update_info=kxkb_variants.upd:split-variants,kxkb.upd:remove-empty-lists,kxkb.upd:add-back-resetoptions
+
+[Layout]
+DisplayNames=,
+LayoutList=us,pt
+Options=terminate:ctrl_alt_bksp
+ResetOldOptions=true
+Use=true
+VariantList=,

@@ -1,0 +1,7 @@
+[user]
+	email = guilhermesoares1970@gmail.com
+	name = Guilherme Soares
+[credential]
+	helper = store
+[init]
+	defaultBranch = main
