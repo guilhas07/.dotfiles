@@ -46,6 +46,14 @@ require("lazy").setup({
             restricted_keys = {
                 ["<C-P>"] = {},
             },
+            hints = {
+                ["[bB][eE]"] = {
+                    message = function (keys)
+                        return "Use g" .. keys:sub(2) .. " instead of " .. keys
+                    end,
+                    length = 2
+                }
+            }
         },
     },
     --AutoPairs
