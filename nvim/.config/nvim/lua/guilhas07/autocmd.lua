@@ -9,6 +9,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "*" },
+	callback = function()
+		pcall(vim.treesitter.start)
+	end,
+})
+
 function M.inlay_hint(buf)
 	local group = vim.api.nvim_create_augroup(prefix .. ":Toggle_inlay_hints_on_insert", {})
 	vim.api.nvim_clear_autocmds({ group = group, buffer = buf })

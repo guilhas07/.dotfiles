@@ -214,6 +214,8 @@ require("lazy").setup({
 		--Treesitter
 		-- dir = "~/nvim-treesitter/",
 		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
+		lazy = false,
 		dependencies = {
 			{
 				"nvim-treesitter/nvim-treesitter-context",
