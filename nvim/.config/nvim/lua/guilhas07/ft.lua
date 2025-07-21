@@ -15,3 +15,9 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt.formatoptions:remove({ "o", "r" })
 	end,
 })
+
+vim.filetype.add({
+	pattern = {
+		[".*/%.env%..*"] = "sh",
+	},
+})
