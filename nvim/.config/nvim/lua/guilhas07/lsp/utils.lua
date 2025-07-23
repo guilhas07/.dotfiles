@@ -79,7 +79,6 @@ local servers = {
 			},
 		},
 	},
-	-- eslint = {},
 	lemminx = {},
 	-- ts_ls = {},
 	vue_ls = {},

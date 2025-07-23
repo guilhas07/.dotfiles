@@ -54,12 +54,22 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 			async = true,
 			lsp_format = "fallback",
 			filter = function(client)
-				-- don't use ts_ls if other lsp is attached
-				if client.name == "ts_ls" then
+				function check_client()
 					local clients = vim.lsp.get_clients({ buffer = args.buf })
-					return #clients == 1
+					for _, c in pairs(clients) do
+						if c.name == "eslint" then
+							return client.name == "eslint"
+						end
+					end
+                    -- don't use ts_ls if other lsp is attached
+					if client.name == "ts_ls" then
+						return #clients == 1
+					end
+					return true
 				end
-				return true
+				local useClient = check_client()
+				-- print("Checking " .. client.name .. " Using: " .. tostring(useClient))
+				return useClient
 			end,
 		})
 	end,
