@@ -4,6 +4,9 @@ local function add_prettier()
 		formatters = {
 			prettier = {
 				require_cwd = true,
+				condition = function(self, ctx)
+					return vim.fs.root(ctx.dirname, ".eslintrc.js") == nil
+				end,
 			},
 		},
 	}
@@ -61,7 +64,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 							return client.name == "eslint"
 						end
 					end
-                    -- don't use ts_ls if other lsp is attached
+					-- don't use ts_ls if other lsp is attached
 					if client.name == "ts_ls" then
 						return #clients == 1
 					end
