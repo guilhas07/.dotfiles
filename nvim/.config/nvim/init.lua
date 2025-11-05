@@ -122,23 +122,24 @@ require("lazy").setup({
 			"williamboman/mason.nvim",
 			-- "nvimtools/none-ls.nvim", -- Provide hooks to lsp
 			{ "j-hui/fidget.nvim", config = true }, -- opts = { window = { blend = 0 } } },
-			"mfussenegger/nvim-jdtls",
 			"Hoffs/omnisharp-extended-lsp.nvim",
-			{
-				"mrcjkb/rustaceanvim",
-				-- version = "^3", -- Recommended
-				-- ft = { "rust" },
-				config = function()
-					vim.g.rustaceanvim = {
-						server = {
-							on_attach = require("guilhas07.lsp.utils").on_attach,
-						},
-					}
-				end,
-			},
 		},
 		config = function()
 			require("guilhas07.lsp")
+		end,
+	},
+	{ "mfussenegger/nvim-jdtls" },
+	{
+		"mrcjkb/rustaceanvim",
+        dependencies = { "neovim/nvim-lspconfig" },
+		-- version = "^3", -- Recommended
+		-- ft = { "rust" },
+		config = function()
+			vim.g.rustaceanvim = {
+				server = {
+					on_attach = require("guilhas07.lsp.utils").on_attach,
+				},
+			}
 		end,
 	},
 
