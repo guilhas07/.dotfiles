@@ -1,5 +1,7 @@
 bash/.bash_history
 vim/.vim/plugged/
 .netrwhist
+git/.ssh/*
+!./git/.ssh/config
 
 lazygit/.config/lazygit/state.yml
