@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Walker
+Exec=walker
+StartupNotify=false
+Terminal=false
+Type=Application
