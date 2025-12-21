@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=idea
+Exec=sh -c "~/.local/share/JetBrains/Toolbox/apps/intellij-idea-ultimate/bin/idea.sh"
+StartupNotify=false
+Terminal=false
+Type=Application
