@@ -67,6 +67,9 @@ vim.opt.guicursor = {
 	"i-ci-ve:ver25-Cursor/lCursor",
 	"r-cr-o:hor20-Cursor/lCursor",
 }
+
+vim.o.splitright = true
+
 -- vim.g.clipboard = {
 --     name = 'Kitty',
 --     copy = {
