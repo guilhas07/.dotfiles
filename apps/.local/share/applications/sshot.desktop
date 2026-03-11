@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=SShot
+Exec=sh -c 'grim -g "$(slurp -d)" - | wl-copy'
+StartupNotify=false
+Terminal=false
+Type=Application
