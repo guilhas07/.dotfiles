@@ -30,10 +30,10 @@ keymap.set("n", "<leader>cd", function()
 		end
 	end
 
-    if not qf then
-        vim.notify("No quickfix list is currently open", vim.log.levels.WARN)
-        return
-    end
+	if not qf then
+		vim.notify("No quickfix list is currently open", vim.log.levels.WARN)
+		return
+	end
 
 	vim.ui.input({ prompt = "Enter command for cdo: ", relative = "editor" }, function(input)
 		if not input or input == "" then
@@ -48,7 +48,15 @@ keymap.set("n", "<leader>cd", function()
 		-- NOTE: creating another win where buffers are going to be modified by cdo.
 		-- when deleting them this preserves the original layout
 		vim.api.nvim_open_win(0, true, { relative = "win", row = 0, col = 0, width = 1, height = 1 })
-		vim.cmd("silent noautocmd cdo " .. input .. " | update")
+		-- Lua also escapes pipes. convert \| to | for literal pipe
+		input = input:gsub("\\|", "|")
+		local ok, err = pcall(vim.cmd, "silent noautocmd cdo " .. input .. " | update")
+
+		if not ok then
+			vim.notify("Couldn't execute cdo command:" .. err)
+			vim.api.nvim_win_close(0, false)
+			return
+		end
 		vim.iter(vim.api.nvim_list_bufs()):filter(vim.api.nvim_buf_is_loaded):each(function(buf)
 			if not bufs[buf] or buf == qf then
 				vim.cmd("bwipeout " .. buf)
