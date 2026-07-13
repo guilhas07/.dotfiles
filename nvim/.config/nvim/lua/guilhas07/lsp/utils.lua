@@ -181,6 +181,7 @@ local servers = {
 	-- 		},
 	-- 	},
 	-- },
+    jsonls = {}
 }
 
 local M = {}
