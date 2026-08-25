@@ -69,6 +69,9 @@ require("lazy").setup({
 			"rcarriga/nvim-notify",
 		},
 		opts = {
+			disabled_filetypes = {
+				["gitsigns-blame"] = true,
+			},
 			disable_mouse = false,
 			allow_different_key = true,
 			max_time = 500,
