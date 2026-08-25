@@ -10,15 +10,15 @@ local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 
 telescope.setup({
-    defaults = {
-        mappings = {
-            i = {
-                ["<C-n>"] = "move_selection_previous",
-                ["<C-p>"] = "move_selection_next",
-            },
-        },
-        path_display = {"smart"},
-    },
+	defaults = {
+		mappings = {
+			i = {
+				["<C-n>"] = "move_selection_previous",
+				["<C-p>"] = "move_selection_next",
+			},
+		},
+		path_display = { shorten = { len = 1, exclude = { 1, -1 } } },
+	},
 })
 
 function find_files()
@@ -63,7 +63,7 @@ vim.keymap.set("n", "gr", builtin.lsp_references)
 vim.keymap.set("n", "<leader>fb", builtin.buffers)
 vim.keymap.set("n", "<leader>fgg", builtin.live_grep)
 vim.keymap.set("n", "<leader>fgh", function()
-	builtin.live_grep({ additional_args = { "--no-ignore", "--hidden" }})
+	builtin.live_grep({ additional_args = { "--no-ignore", "--hidden" } })
 end)
 vim.keymap.set("n", "<leader>h", builtin.help_tags)
 vim.keymap.set("n", "<leader>dl", builtin.diagnostics)
@@ -83,7 +83,6 @@ vim.keymap.set("n", "<c-p>", function()
 		find_files()
 	end
 end)
-
 
 local key = (_G.IS_WSL or vim.fn.exists("$TMUX") ~= 0) and "<c-_>" or "<c-/>"
 
