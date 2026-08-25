@@ -32,8 +32,8 @@ require("lspconfig.ui.windows").default_options.border = border
 require("mason").setup({ ui = { border = border } })
 
 -- Configure handlers
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
+vim.lsp.buf.hover({ border = border })
+vim.lsp.buf.signature_help({ border = border })
 vim.lsp.handlers["textDocument/definition"] = function(_, result, ctx)
 	-- Always go to first definition
 	if not result or vim.tbl_isempty(result) then
@@ -86,7 +86,7 @@ local servers = {
 		filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 		settings = {
 			vtsls = {
-                autoUseWorkspaceTsdk = true,
+				autoUseWorkspaceTsdk = true,
 				tsserver = {
 					globalPlugins = {
 						{
@@ -181,7 +181,8 @@ local servers = {
 	-- 		},
 	-- 	},
 	-- },
-    jsonls = {}
+	jsonls = {},
+	kotlin_lsp = {},
 }
 
 local M = {}
