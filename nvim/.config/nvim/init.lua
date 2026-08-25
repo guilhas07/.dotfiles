@@ -303,6 +303,13 @@ require("lazy").setup({
 	"mbbill/undotree",
 }, { ui = { border = "rounded", browser = browser }, checker = { enabled = true } })
 
+local debug = false
+if debug then
+    vim.lsp.log.set_level 'trace'
+    require('vim.lsp.log').set_format_func(vim.inspect)
+end
+
+
 require("guilhas07.set")
 require("guilhas07.overrides")
 require("guilhas07.maps")
