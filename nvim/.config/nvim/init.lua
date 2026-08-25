@@ -117,6 +117,7 @@ require("lazy").setup({
 	{
 		-- Lsp
 		"neovim/nvim-lspconfig",
+		enabled = vim.env.NVIM_NO_LSP ~= "1",
 		dependencies = {
 			-- Provide installation for Lsp, DAP, Lint, Formatter
 			"williamboman/mason.nvim",
@@ -128,10 +129,11 @@ require("lazy").setup({
 			require("guilhas07.lsp")
 		end,
 	},
-	{ "mfussenegger/nvim-jdtls" },
+	{ "mfussenegger/nvim-jdtls", enabled = vim.env.NVIM_NO_LSP ~= "1" },
 	{
 		"mrcjkb/rustaceanvim",
-        dependencies = { "neovim/nvim-lspconfig" },
+		enabled = vim.env.NVIM_NO_LSP ~= "1",
+		dependencies = { "neovim/nvim-lspconfig" },
 		-- version = "^3", -- Recommended
 		-- ft = { "rust" },
 		config = function()

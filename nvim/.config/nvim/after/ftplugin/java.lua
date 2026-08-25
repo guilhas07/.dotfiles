@@ -1,3 +1,8 @@
+local ok, jdtls = pcall(require, "jdtls")
+if not ok then
+	return
+end
+
 local jdtls_path = vim.fn.stdpath("data") .. "/mason/packages/jdtls"
 local path_to_plugins = jdtls_path .. "/plugins"
 local path_to_config = jdtls_path .. "/config_linux"
@@ -57,4 +62,4 @@ local config = {
 	on_attach = require("guilhas07.lsp.utils").on_attach,
 }
 
-require("jdtls").start_or_attach(config)
+jdtls.start_or_attach(config)

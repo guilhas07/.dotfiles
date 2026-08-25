@@ -40,6 +40,7 @@ update-cargo () {
 }
 
 alias vim="nvim"
+alias vimr="NVIM_NO_LSP=1 nvim"
 alias dot="cd ~/.dotfiles/"
 alias mkdir="mkdir -p"
 lg()
