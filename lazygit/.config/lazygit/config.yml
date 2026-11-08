@@ -1,7 +1,7 @@
 git:
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: delta --dark --paging=never
+      command: delta --dark --paging=never
 os:
   edit: 'NVIM_LIGHT=1 nvim {{filename}}'
   editAtLine: 'NVIM_LIGHT=1 nvim +{{line}} {{filename}}'
