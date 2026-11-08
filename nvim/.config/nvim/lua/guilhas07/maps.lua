@@ -45,23 +45,37 @@ keymap.set("n", "<leader>cd", function()
 			return acc
 		end)
 
-		-- NOTE: creating another win where buffers are going to be modified by cdo.
-		-- when deleting them this preserves the original layout
-		vim.api.nvim_open_win(0, true, { relative = "win", row = 0, col = 0, width = 1, height = 1 })
 		-- Lua also escapes pipes. convert \| to | for literal pipe
 		input = input:gsub("\\|", "|")
+		input = input .. "/ge"
+
+		local orig_win = vim.api.nvim_get_current_win()
+		-- NOTE: creating another win where buffers are going to be modified by cdo.
+		-- when deleting them this preserves the original layout
+		local float_win = vim.api.nvim_open_win(0, true, { relative = "win", row = 0, col = 0, width = 1, height = 1 })
 		local ok, err = pcall(vim.cmd, "silent noautocmd cdo " .. input .. " | update")
 
-		if not ok then
-			vim.notify("Couldn't execute cdo command:" .. err)
-			vim.api.nvim_win_close(0, false)
-			return
+		if vim.api.nvim_win_is_valid(float_win) then
+			vim.api.nvim_win_close(float_win, true)
 		end
+		if vim.api.nvim_win_is_valid(orig_win) then
+			vim.api.nvim_set_current_win(orig_win)
+		end
+
+		if ok then
+			vim.cmd.cclose()
+		end
+
 		vim.iter(vim.api.nvim_list_bufs()):filter(vim.api.nvim_buf_is_loaded):each(function(buf)
-			if not bufs[buf] or buf == qf then
+			local opened_by_cdo = not bufs[buf] and not vim.bo[buf].modified
+			if opened_by_cdo or (ok and buf == qf) then
 				vim.cmd("bwipeout " .. buf)
 			end
 		end)
+
+		if not ok then
+			vim.notify("Couldn't execute cdo command:" .. err, vim.log.levels.ERROR)
+		end
 	end)
 end, { desc = "Cdo without autocmds" })
 
