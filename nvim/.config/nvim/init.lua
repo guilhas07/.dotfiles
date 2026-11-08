@@ -120,7 +120,7 @@ require("lazy").setup({
 	{
 		-- Lsp
 		"neovim/nvim-lspconfig",
-		enabled = vim.env.NVIM_NO_LSP ~= "1",
+		enabled = vim.env.NVIM_LIGHT ~= "1",
 		dependencies = {
 			-- Provide installation for Lsp, DAP, Lint, Formatter
 			"williamboman/mason.nvim",
@@ -132,10 +132,10 @@ require("lazy").setup({
 			require("guilhas07.lsp")
 		end,
 	},
-	{ "mfussenegger/nvim-jdtls", enabled = vim.env.NVIM_NO_LSP ~= "1" },
+	{ "mfussenegger/nvim-jdtls", enabled = vim.env.NVIM_LIGHT ~= "1" },
 	{
 		"mrcjkb/rustaceanvim",
-		enabled = vim.env.NVIM_NO_LSP ~= "1",
+		enabled = vim.env.NVIM_LIGHT ~= "1",
 		dependencies = { "neovim/nvim-lspconfig" },
 		-- version = "^3", -- Recommended
 		-- ft = { "rust" },
@@ -301,14 +301,13 @@ require("lazy").setup({
 	},
 	-- 'norcalli/nvim-colorizer,
 	"mbbill/undotree",
-}, { ui = { border = "rounded", browser = browser }, checker = { enabled = true } })
+}, { ui = { border = "rounded", browser = browser }, checker = { enabled = vim.env.NVIM_LIGHT ~= 1, notify = vim.env.NVIM_LIGHT ~= 1} })
 
 local debug = false
 if debug then
-    vim.lsp.log.set_level 'trace'
-    require('vim.lsp.log').set_format_func(vim.inspect)
+	vim.lsp.log.set_level("trace")
+	require("vim.lsp.log").set_format_func(vim.inspect)
 end
-
 
 require("guilhas07.set")
 require("guilhas07.overrides")
