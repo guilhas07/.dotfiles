@@ -1,9 +1,5 @@
-[user]
-	email = guilhermesoares1970@gmail.com
-	name = Guilherme Soares
-
-[includeIf "gitdir:~/work/"]
-    path = ~/.gitconfig-work
+[include]
+    path = ~/.gitconfig.private
 
 [init]
     defaultBranch = main

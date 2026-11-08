@@ -77,9 +77,18 @@ fi
 # restore config directories
 dirs=$(find . -maxdepth 1 -type d ! -path ".git" ! -path "." | tr -d "./")
 for dir in $dirs; do
+	[[ "$dir" == "private" ]] && continue
 	echo "Stowing $dir"
 	stow $dir
 done
+
+if [[ -d private ]]; then
+	for dir in private/*/; do
+		dir=$(basename "$dir")
+		echo "Stowing private/$dir"
+		stow -d private -t ~ "$dir"
+	done
+fi
 
 # update fonts
 fc-cache -fv ~/.local/share/fonts/

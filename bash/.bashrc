@@ -59,3 +59,5 @@ lg()
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 HISTTIMEFORMAT="%d/%m/%y %T "
+# private settings (private submodule), skipped if missing
+[ -f ~/.bashrc.private ] && . ~/.bashrc.private
