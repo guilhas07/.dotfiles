@@ -25,6 +25,8 @@ vim.opt.termguicolors = true
 
 --vim.opt.scrolloff = 8
 vim.opt.scrolloff = 999
+vim.opt.sidescrolloff = 999
+vim.opt.sidescroll = 1
 vim.opt.signcolumn = "yes"
 -- vim.opt.isfname:append("@-@") ?? n sei o que faz
 
