@@ -26,7 +26,7 @@ anchor_right = true
 "symbols" = 3
 
 [placeholders]
-"default" = { input = "Search", list = "No Results" } # placeholders for input and empty list, key is the providers name, so f.e. "desktopapplications" or "menus:other"
+"default" = { input = "Search   ;list  @web  jira/jq  /files  :clip  .emoji  $win  =calc  sshot", list = "No Results" } # placeholders for input and empty list, key is the providers name, so f.e. "desktopapplications" or "menus:other"
 
 [keybinds]
 close = ["Escape"]

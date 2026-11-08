@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# When an external monitor is present, move every workspace to it (it's the main screen),
+# except 10, which stays on the laptop (see workspace rule in hyprland.conf).
+# On unplug Hyprland already moves workspaces back to the remaining monitor by itself.
+# Runs once at start (login while docked), then on every monitoradded event.
+
+LAPTOP="eDP-1"
+
+move_all_to_external() {
+    local ext
+    ext=$(hyprctl monitors -j | jq -r --arg l "$LAPTOP" '[.[] | select(.name != $l and .mirrorOf == "none")][0].name // empty')
+    [ -z "$ext" ] && return
+
+    local focused
+    focused=$(hyprctl activeworkspace -j | jq -r '.id')
+
+    for ws in $(hyprctl workspaces -j | jq -r '.[] | select(.id > 0 and .id != 10) | .id'); do
+        hyprctl dispatch moveworkspacetomonitor "$ws" "$ext" >/dev/null
+    done
+
+    hyprctl dispatch focusmonitor "$ext" >/dev/null
+    [ -n "$focused" ] && hyprctl dispatch workspace "$focused" >/dev/null
+}
+
+sleep 5 # let exec-once apps open their workspaces first
+move_all_to_external
+
+socat -U - "UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock" |
+    while read -r line; do
+        case "$line" in
+            monitoradded\>\>*)
+                sleep 1 # let Hyprland finish configuring the new output
+                move_all_to_external
+                ;;
+        esac
+    done

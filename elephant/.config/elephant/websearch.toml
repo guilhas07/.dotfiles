@@ -1,0 +1,34 @@
+# Walker: type the prefix directly (websearch is a default provider), or "@" first.
+# %TERM% = query (URL-encoded).
+
+[[entries]]
+name = "Jira"
+prefix = "jira "
+icon = "/home/gu1lty/.config/elephant/icons/jira.svg"
+url = "https://jira.intra-tpg.ch/browse/%TERM%"
+
+[[entries]]
+name = "Jira"
+prefix = "jq "
+icon = "/home/gu1lty/.config/elephant/icons/jira.svg"
+url = "https://jira.intra-tpg.ch/browse/%TERM%"
+
+[[entries]]
+name = "Google"
+default = true
+url = "https://www.google.com/search?q=%TERM%"
+
+[[entries]]
+name = "GitHub"
+prefix = "gh "
+url = "https://github.com/search?q=%TERM%&type=repositories"
+
+[[entries]]
+name = "Arch Wiki"
+prefix = "aw "
+url = "https://wiki.archlinux.org/index.php?search=%TERM%"
+
+[[entries]]
+name = "AUR"
+prefix = "aur "
+url = "https://aur.archlinux.org/packages?K=%TERM%"
