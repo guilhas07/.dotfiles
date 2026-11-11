@@ -22,3 +22,5 @@
     colorMoved = default
 [submodule]
 	recurse = true
+[fetch]
+	prune = true
