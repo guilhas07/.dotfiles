@@ -1,5 +1,3 @@
-local border = "rounded"
-
 local signs_hl = {
 	[vim.diagnostic.severity.ERROR] = { " ", "Error" },
 	[vim.diagnostic.severity.WARN] = { " ", "Warn" },
@@ -22,37 +20,10 @@ end
 
 vim.diagnostic.config({
 	virtual_text = { prefix = "●" },
-	float = { --[[ source = "always", ]]
-		border = border,
-	},
 	signs = signs,
 })
 
-require("lspconfig.ui.windows").default_options.border = border
-require("mason").setup({ ui = { border = border } })
-
--- Configure handlers
-vim.lsp.buf.hover({ border = border })
-vim.lsp.buf.signature_help({ border = border })
-vim.lsp.handlers["textDocument/definition"] = function(_, result, ctx)
-	-- Always go to first definition
-	if not result or vim.tbl_isempty(result) then
-		print("[LSP]: No definition found")
-		return
-	end
-
-	local client = vim.lsp.get_client_by_id(ctx.client_id)
-	if client == nil then
-		print("[LSP]: Couldn't get client with id " .. ctx.client_id)
-		return
-	end
-
-	if vim.islist(result) then
-		vim.lsp.util.jump_to_location(result[1], client.offset_encoding)
-	else
-		vim.lsp.util.jump_to_location(result, client.offset_encoding)
-	end
-end
+require("mason").setup()
 
 local servers = {
 	lua_ls = {
@@ -170,9 +141,6 @@ local servers = {
 		--             useModernNet = false,
 		--         },
 		--     },
-		handlers = {
-			["textDocument/definition"] = require("omnisharp_extended").handler,
-		},
 	},
 	-- sqls = {
 	-- 	settings = {
@@ -189,14 +157,20 @@ local M = {}
 
 -- LspAttach Function
 function M.on_attach(client, bufnr)
-	local bufopts = { noremap = true, silent = true, buffer = bufnr }
-	vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-	vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-	vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, bufopts)
-	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-	vim.keymap.set("n", "<leader>sh", vim.lsp.buf.signature_help, bufopts)
-	vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, bufopts)
-	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+	local function map(lhs, rhs, desc)
+		vim.keymap.set("n", lhs, rhs, { noremap = true, silent = true, buffer = bufnr, desc = desc })
+	end
+	if client.name == "omnisharp" then
+		-- omnisharp-extended: same jumps, plus decompiled metadata / source-generated files
+		local ox = require("omnisharp_extended")
+		map("gd", ox.lsp_definition, "LSP definition (omnisharp)")
+		map("grt", ox.lsp_type_definition, "LSP type definition (omnisharp)")
+		map("grr", ox.lsp_references, "LSP references (omnisharp)")
+		map("gri", ox.lsp_implementation, "LSP implementation (omnisharp)")
+	else
+		map("gd", vim.lsp.buf.definition, "LSP definition")
+	end
+	map("<leader>sh", vim.lsp.buf.signature_help, "LSP signature help")
 
 	-- toggle inlay_hints
 	if client.server_capabilities.inlayHintProvider then

@@ -54,6 +54,8 @@ end
 
 vim.opt_local.shortmess:append("c")
 
+vim.o.winborder = "rounded" -- default border for all floats (hover, diagnostics, mason, ...)
+
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldenable = false -- Use zi to toggle folds
