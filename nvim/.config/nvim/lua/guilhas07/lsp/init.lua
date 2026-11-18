@@ -2,6 +2,9 @@ local utils = require("guilhas07.lsp.utils")
 local on_attach = utils.on_attach
 local servers = utils.servers
 
+-- jar:///…!/entry reader (gd into kotlin-lsp library sources)
+require("guilhas07.lsp.jar").setup()
+
 -- Get server capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())

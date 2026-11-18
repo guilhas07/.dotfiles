@@ -150,7 +150,23 @@ local servers = {
 	-- 	},
 	-- },
 	jsonls = {},
-	kotlin_lsp = {},
+	kotlin_lsp = {
+		filetypes = { "kotlin", "java" },
+		handlers = {
+			-- kotlin-lsp answers rename with its own per-file change counter as the document
+			-- version (0, 1, ...), not the version nvim sent. nvim then skips the file
+			-- ("Buffer ... newer than edits"). Drop the version so the edits apply.
+            -- TODO(Guilherme): remove once they fix this. next version
+			["textDocument/rename"] = function(err, result, ctx)
+				for _, change in ipairs(result and result.documentChanges or {}) do
+					if change.textDocument then
+						change.textDocument.version = vim.NIL
+					end
+				end
+				return vim.lsp.handlers["textDocument/rename"](err, result, ctx)
+			end,
+		},
+	},
 }
 
 local M = {}
