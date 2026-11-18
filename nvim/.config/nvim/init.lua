@@ -105,6 +105,11 @@ require("lazy").setup({
 		event = "VeryLazy",
 	},
 	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		opts = { delay = 300 },
+	},
+	{
 		-- Adds git releated signs to the gutter, as well as utilities for managing changes
 		"lewis6991/gitsigns.nvim",
 		opts = {
@@ -116,6 +121,29 @@ require("lazy").setup({
 				changedelete = { text = "~" },
 			},
 		},
+	},
+	{
+		"sindrets/diffview.nvim",
+		cmd = { "DiffviewOpen", "DiffviewFileHistory", "DiffviewClose" },
+		init = function()
+			require("guilhas07.review").setup()
+		end,
+		keys = function()
+			-- Resolve repo default branch (origin/HEAD), fallback origin/main
+			local function base()
+				local ref = vim.fn.systemlist("git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null")[1]
+				return (ref and ref ~= "") and ref or "origin/main"
+			end
+			return {
+				{ "<leader>gv", function() vim.cmd("DiffviewOpen " .. base() .. "...HEAD") end, desc = "Diffview: branch vs base" },
+				{ "<leader>gh", function() vim.cmd("DiffviewFileHistory --range=" .. base() .. "..HEAD") end, desc = "Diffview: branch commits" },
+				{ "<leader>gc", "<cmd>DiffviewOpen HEAD~1<cr>", desc = "Diffview: current commit (editable)" },
+				{ "<leader>gf", "<cmd>DiffviewFileHistory %<cr>", desc = "Diffview: file history" },
+				{ "<leader>gq", "<cmd>DiffviewClose<cr>", desc = "Diffview: close" },
+				{ "<leader>gn", "<cmd>ReviewContinue<cr>", desc = "Review: amend + next commit" },
+				{ "<leader>gt", "<cmd>ReviewTodos<cr>", desc = "Review: TODO list" },
+			}
+		end,
 	},
 	{
 		-- Lsp
