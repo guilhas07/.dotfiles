@@ -253,6 +253,12 @@ hl.bind(mainMod .. " + l", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + k", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + j", hl.dsp.focus({ direction = "down" }))
 
+-- Swap the focused window with its neighbour with mainMod + SHIFT + hjkl
+hl.bind(mainMod .. " + SHIFT + h", hl.dsp.window.swap({ direction = "left" }))
+hl.bind(mainMod .. " + SHIFT + l", hl.dsp.window.swap({ direction = "right" }))
+hl.bind(mainMod .. " + SHIFT + k", hl.dsp.window.swap({ direction = "up" }))
+hl.bind(mainMod .. " + SHIFT + j", hl.dsp.window.swap({ direction = "down" }))
+
 -- Workspaces: mainMod + [0-9] switch, + SHIFT moves active window
 for i = 1, 10 do
     local key = i % 10 -- 10 maps to key 0
@@ -266,9 +272,6 @@ end
 -- `|| exit` stops cleanly when the selection is cancelled with Esc.
 hl.bind(mainMod .. " + S", hl.dsp.exec_cmd([[g=$(slurp) || exit; grim -g "$g" - | satty --filename - --output-filename "$HOME/Pictures/Screenshots/%Y-%m-%d_%H-%M-%S.png" --copy-command wl-copy --early-exit]]))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd([[g=$(slurp) || exit; grim -g "$g" - | wl-copy --type image/png]]))
-
--- Toggle stream mode (LIVE indicator + Big Brother wallpaper) for the current screen share
-hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd("qs ipc call screenshare toggle"))
 
 -- Scroll through existing workspaces
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))

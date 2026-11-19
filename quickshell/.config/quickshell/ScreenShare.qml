@@ -1,7 +1,6 @@
 pragma Singleton
 import QtQuick
 import Quickshell
-import Quickshell.Io
 import Quickshell.Services.Pipewire
 
 // Stream mode: on while the screen is being shared. xdg-desktop-portal-hyprland creates a
@@ -18,12 +17,8 @@ Singleton {
 
     onSharingChanged: if (!sharing) suppressed = false
 
-    // Super+Shift+L in hyprland.lua: `qs ipc call screenshare toggle`
-    IpcHandler {
-        target: "screenshare"
-
-        function toggle(): void {
-            if (root.sharing) root.suppressed = !root.suppressed;
-        }
+    // Clicking the LIVE indicator: hide stream mode for the rest of this share (one-way).
+    function suppress(): void {
+        if (root.sharing) root.suppressed = true;
     }
 }
